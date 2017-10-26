@@ -20,11 +20,13 @@ export default class App extends Component {
     return (
       <div className="App">
         <Router>
-          <div>
-            <Navbar />
-            <p>App Component</p>
-            {routes.map((route, i) => <Route key={i} {...route} />)}
-          </div>
+          <Switch>
+            <div>
+              <Navbar />
+              <p>App Component</p>
+              {routes.map((route, i) => <Route key={i} {...route} />)}
+            </div>
+          </Switch>
         </Router>
       </div>
     )
