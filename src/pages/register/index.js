@@ -16,10 +16,12 @@ class Register extends Component {
   render() {
     return (
       <div className="form-group">
-        <TextInput textKey="userFName" label="First Name" placeholder="Enter first name" />
-        <TextInput textKey="userLName" label="Last Name" placeholder="Enter last name" />
-        <TextInput textKey="email" label="Email" placeholder="Enter email" />
-        <TextInput textKey="password" label="Password" placeholder="Enter password" type="password"/>
+        <TextInput textKey="userFName" label="First Name" placeholder="Enter first name" value="Peter"/>
+        <TextInput textKey="userLName" label="Last Name" placeholder="Enter last name" value="Huang"/>
+        <TextInput textKey="DOB" label="Date of Birth" placeholder="Enter your date of birth" value="1999-12-12"/>
+        <TextInput textKey="gender" label="Gender" placeholder="What is your gender" value="M"/>
+        <TextInput textKey="email" label="Email" placeholder="Enter email" value="aosda@gmail.com"/>
+        <TextInput textKey="password" label="Password" placeholder="Enter password" type="password" value="aosidjaoisdj"/>
         <button onClick={() => this.handleClick()}>
           Sign Up
         </button>
