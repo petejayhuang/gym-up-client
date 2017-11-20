@@ -34,7 +34,8 @@ module.exports = {
     ]
   },
   devServer: {
-    contentBase: './dist'
+    contentBase: './dist',
+    historyApiFallback: true
   },
   devtool: "cheap-eval-source-map",
   plugins: [

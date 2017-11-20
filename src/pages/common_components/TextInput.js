@@ -1,6 +1,26 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { textInputChange } from '../../actions';
+import styled from 'styled-components';
+import appStyles from '../../assets/css/appStyles'
+
+const FormGroup = styled.div`
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+`
+const Label = styled.label`
+  
+`
+
+const Input = styled.input`
+  height: 40px;
+  margin-top: 10px;
+  border: none;
+  border: 1px solid ${appStyles.colors.grey};
+  width: 300px;
+  font-size: 18px;
+`
 
 class TextInput extends Component {
   constructor(props) {
@@ -17,13 +37,17 @@ class TextInput extends Component {
 
   render() {
     return (
-      <div>
-        <label>{this.props.label}</label>
-        <input
-          placeholder={this.props.placeholder}
-          onChange={(e) => this.handleInputChange(e)}
-        />
-      </div>
+      <FormGroup>
+        <div>
+          <Label>{this.props.label}</Label>
+        </div>
+        <div>
+          <Input
+            placeholder={this.props.placeholder}
+            onChange={(e) => this.handleInputChange(e)}
+          />
+        </div>
+      </FormGroup>
     )
   }
 }

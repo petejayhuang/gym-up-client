@@ -10,7 +10,7 @@ import {
 import routes from './routes'
 
 // COMPONENTS
-import Navbar from './common_components/navbar'
+import Navbar from './common_components/Navbar'
 
 // STYLES
 import '../assets/css/styles.css';
@@ -23,7 +23,6 @@ export default class App extends Component {
           <Switch>
             <div>
               <Navbar />
-              <p>App Component</p>
               {routes.map((route, i) => <Route key={i} {...route} />)}
             </div>
           </Switch>
