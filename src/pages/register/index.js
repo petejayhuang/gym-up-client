@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import TextInput from '../common_components/TextInput';
 import { connect } from 'react-redux';
-import { sendRegisterForm } from '../../actions';
+import { createUser } from '../../actions';
 
 import styled from 'styled-components';
 import appStyles from '../../assets/css/appStyles';
@@ -40,7 +40,7 @@ class Register extends Component {
   }
 
   handleClick() {
-    this.props.sendRegisterForm(this.props.registerForm)
+    this.props.createUser()
   }
 
   render() {
@@ -51,13 +51,13 @@ class Register extends Component {
         </div>
         <Form>
           <div>
-            <TextInput textKey="userFName" label="First Name" value="Peter" />
-            <TextInput textKey="userLName" label="Last Name" value="Huang" />
-            <TextInput textKey="DOB" label="Date of Birth" value="1999-12-12" />
-            <TextInput textKey="gender" label="Gender" value="M" />
-            <TextInput textKey="email" label="Email" value="aosda@gmail.com" />
-            <TextInput textKey="password" label="Password" type="password" value="aosidjaoisdj" />
-            <SignUpButton onClick={() => this.handleClick()}>
+            <TextInput textKey="firstName" label="First Name" />
+            <TextInput textKey="lastName" label="Last Name" />
+            <TextInput textKey="DOB" label="Date of Birth" />
+            <TextInput textKey="gender" label="Gender" />
+            <TextInput textKey="email" label="Email" />
+            <TextInput textKey="password" label="Password" type="password" />
+            <SignUpButton onClick={this.handleClick}>
               Register
         </SignUpButton>
           </div>
@@ -67,10 +67,4 @@ class Register extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    registerForm: state.registerForm
-  }
-}
-
-export default connect(mapStateToProps, { sendRegisterForm })(Register)
+export default connect(null, { createUser })(Register)

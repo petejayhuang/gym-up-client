@@ -9,16 +9,16 @@ const FormGroup = styled.div`
   display: flex;
   flex-direction: column;
 `
-const Label = styled.label`
-  
+const Label = styled.label` 
 `
-
 const Input = styled.input`
   height: 40px;
   margin-top: 10px;
   border: none;
   border: 1px solid ${appStyles.colors.grey};
+  border-left: 2px solid ${appStyles.colors.primary};
   width: 300px;
+  padding-left: 10px;
   font-size: 18px;
 `
 
@@ -33,9 +33,19 @@ class TextInput extends Component {
 
   handleInputChange(e) {
     this.props.textInputChange(this.props.textKey, e.target.value)
+    this.setState({
+      text: e.target.value
+    })
+  }
+
+  componentDidMount() {
+    this.setState({
+      text: this.props.value
+    })
   }
 
   render() {
+    console.log("props", this.props)
     return (
       <FormGroup>
         <div>
@@ -45,6 +55,7 @@ class TextInput extends Component {
           <Input
             placeholder={this.props.placeholder}
             onChange={(e) => this.handleInputChange(e)}
+            value={this.state.text}
           />
         </div>
       </FormGroup>

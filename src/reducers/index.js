@@ -1,8 +1,10 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from 'redux'
 import textInput from './textInputReducer'
+import user from './userReducer'
 
 const reducers = combineReducers({
-  registerForm: textInput
+  registerForm: textInput,
+  user
 })
 
 export default reducers;

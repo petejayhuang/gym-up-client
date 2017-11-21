@@ -1,20 +1,18 @@
-import React, { Component } from 'react';
-import LoggedInNavbar from './LoggedInNavbar';
-import LoggedOutNavbar from './LoggedOutNavbar';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import LoggedInNavbar from './LoggedInNavbar'
+import LoggedOutNavbar from './LoggedOutNavbar'
 
 class Navbars extends Component {
   constructor(props) {
-    super(props)
-    this.state = {
-      isLoggedIn: false
-    }
-  
+    super(props) 
   }
 
   render() {
+    console.log(this.props)
     return (
       <div>
-        { this.state.isLoggedIn 
+        { this.props.user.userId
           ? <LoggedInNavbar />
           : <LoggedOutNavbar />
         }
@@ -23,4 +21,10 @@ class Navbars extends Component {
   }
 }
 
-export default Navbars;
+function mapStateToProps(state){
+  return {
+    user: state.user
+  }
+}
+
+export default connect(mapStateToProps, null)(Navbars)

@@ -1,8 +1,10 @@
-import { TEXT_INPUT_CHANGE } from '../actions/actionTypes'
+import {
+  UPDATE_TEXT_INPUT
+} from '../actions/actionTypes'
 
 export default function textInputChange(state = {}, action) {
   switch (action.type) {
-    case TEXT_INPUT_CHANGE:
+    case UPDATE_TEXT_INPUT:
       return Object.assign({}, state, action.payload)
     default:
       return state;

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import TextInput from '../common_components/TextInput';
 import { connect } from 'react-redux';
-import { sendRegisterForm } from '../../actions';
+// import { sendRegisterForm } from '../../actions';
 
 import styled from 'styled-components';
 import appStyles from '../../assets/css/appStyles';
@@ -40,19 +40,18 @@ class Login extends Component {
   }
 
   handleClick() {
-    this.props.sendRegisterForm(this.props.registerForm)
   }
 
   render() {
     return (
       <div>
         <div>
-        <PageHeading>Log In</PageHeading>
+          <PageHeading>Log In</PageHeading>
         </div>
         <Form>
           <TextInput textKey="email" label="Email" value="aosda@gmail.com" />
           <TextInput textKey="password" label="Password" type="password" value="aosidjaoisdj" />
-          <SignUpButton onClick={() => this.handleClick()}>
+          <SignUpButton onClick={this.handleClick}>
             Log In
         </SignUpButton>
         </Form>

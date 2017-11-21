@@ -1,5 +1,5 @@
 import {
-  TEXT_INPUT_CHANGE
+  UPDATE_TEXT_INPUT
 } from './actionTypes'
 
 export function textInputChange(textKey, textInput) {
@@ -7,7 +7,7 @@ export function textInputChange(textKey, textInput) {
   tempObj[textKey] = textInput;
 
   return {
-    type: TEXT_INPUT_CHANGE,
+    type: UPDATE_TEXT_INPUT,
     payload: tempObj
   }
 }
