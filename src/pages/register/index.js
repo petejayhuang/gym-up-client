@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import TextInput from '../common_components/TextInput';
-import { connect } from 'react-redux';
-import { createUser } from '../../actions';
+import React, { Component } from 'react'
+import TextInput from '../../components/forms/TextInput'
+import { connect } from 'react-redux'
+import { createUser } from '../../actions'
 
-import styled from 'styled-components';
-import appStyles from '../../assets/css/appStyles';
+import styled from 'styled-components'
+import appStyles from '../../assets/css/appStyles'
 
 const PageHeading = styled.h1`
   font-weight: 600;

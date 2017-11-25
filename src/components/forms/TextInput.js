@@ -45,7 +45,6 @@ class TextInput extends Component {
   }
 
   render() {
-    console.log("props", this.props)
     return (
       <FormGroup>
         <div>

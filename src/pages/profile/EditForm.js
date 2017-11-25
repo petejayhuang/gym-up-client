@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import TextInput from '../common_components/TextInput';
-import { connect } from 'react-redux';
+import React, { Component } from 'react'
+import TextInput from '../../components/forms/TextInput'
+import { connect } from 'react-redux'
 
-import styled from 'styled-components';
-import appStyles from '../../assets/css/appStyles';
+import styled from 'styled-components'
+import appStyles from '../../assets/css/appStyles'
 
 const PageSecondaryHeading = styled.h1`
   font-weight: 600;

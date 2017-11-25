@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import TextInput from '../common_components/TextInput';
+import TextInput from '../../components/forms/TextInput'
 import { connect } from 'react-redux';
 // import { sendRegisterForm } from '../../actions';
 

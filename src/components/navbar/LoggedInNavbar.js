@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 // Import Styles
 import styled from 'styled-components';
-import appStyles from "../../../assets/css/appStyles"
+import appStyles from "../../assets/css/appStyles";
 
 // Styles
 const Nav = styled.section`
@@ -44,12 +44,11 @@ const NavLinks = styled.div`
   flex-direction: row;
   color: ${appStyles.colors.text};
 `
-
 const NavLink = styled(Link) `
   list-style: none;
   padding-right: 10px;
   text-decoration: none;
-  color: ${appStyles.colors.primary}l
+  color: ${appStyles.colors.primary};
 `
 const PrimaryNavLink = styled(Link) `
   list-style: none;
@@ -60,15 +59,17 @@ const PrimaryNavLink = styled(Link) `
 `
 
 // Component
-class LoggedOutNavbar extends Component {
+class LoggedInNavbar extends Component {
   render() {
     return (
       <Nav>
         <Brand><HomeNavLink to="/">GymApp</HomeNavLink></Brand>
         <Links>
           <NavLinks>
-            <NavLink to="/login">Login</NavLink>
-            <PrimaryNavLink to="/register">Sign Up</PrimaryNavLink>
+            <NavLink to="/new">New Session</NavLink>
+            <NavLink to="/dashboard">Dashboard</NavLink>
+            <NavLink to="/profile">Profile</NavLink>
+            <NavLink to="/logout">Log out</NavLink>
           </NavLinks>
 
         </Links >
@@ -77,4 +78,4 @@ class LoggedOutNavbar extends Component {
   }
 }
 
-export default LoggedOutNavbar;
+export default LoggedInNavbar;

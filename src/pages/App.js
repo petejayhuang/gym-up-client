@@ -10,7 +10,7 @@ import {
 import routes from './routes'
 
 // COMPONENTS
-import Navbar from './common_components/Navbar'
+import Navbar from '../components/navbar'
 
 // STYLES
 import '../assets/css/styles.css';

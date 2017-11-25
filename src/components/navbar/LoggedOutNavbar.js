@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 // Import Styles
 import styled from 'styled-components';
-import appStyles from "../../../assets/css/appStyles"
+import appStyles from "../../assets/css/appStyles"
 
 // Styles
 const Nav = styled.section`
@@ -49,8 +49,11 @@ const NavLink = styled(Link) `
   padding-right: 10px;
   text-decoration: none;
   color: ${appStyles.colors.primary};
+  &:visited {
+    color: ${appStyles.colors.primary};
+  }
 `
-const PrimaryNavLink = styled(Link) `
+const BoldNavLink = styled(Link) `
   list-style: none;
   padding-right: 10px;
   color: ${appStyles.colors.primary};
@@ -59,22 +62,20 @@ const PrimaryNavLink = styled(Link) `
 `
 
 // Component
-class LoggedInNavbar extends Component {
+class LoggedOutNavbar extends Component {
   render() {
     return (
       <Nav>
         <Brand><HomeNavLink to="/">GymApp</HomeNavLink></Brand>
         <Links>
           <NavLinks>
-            <NavLink to="/dashboard">Dashboard</NavLink>
-            <NavLink to="/profile">Profile</NavLink>
-            <NavLink to="/logout">Log out</NavLink>
+            <NavLink to="/login">Login</NavLink>
+            <BoldNavLink to="/register">Sign Up</BoldNavLink>
           </NavLinks>
-
         </Links >
       </Nav >
     )
   }
 }
 
-export default LoggedInNavbar;
+export default LoggedOutNavbar;

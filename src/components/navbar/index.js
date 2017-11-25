@@ -12,7 +12,7 @@ class Navbars extends Component {
     console.log(this.props)
     return (
       <div>
-        { this.props.user.userId
+        { !this.props.user.userId
           ? <LoggedInNavbar />
           : <LoggedOutNavbar />
         }
