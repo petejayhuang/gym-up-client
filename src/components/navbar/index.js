@@ -5,14 +5,13 @@ import LoggedOutNavbar from './LoggedOutNavbar'
 
 class Navbars extends Component {
   constructor(props) {
-    super(props) 
+    super(props)
   }
 
   render() {
-    console.log(this.props)
     return (
       <div>
-        { !this.props.user.userId
+        {this.props.user.userId
           ? <LoggedInNavbar />
           : <LoggedOutNavbar />
         }
@@ -21,7 +20,7 @@ class Navbars extends Component {
   }
 }
 
-function mapStateToProps(state){
+function mapStateToProps(state) {
   return {
     user: state.user
   }

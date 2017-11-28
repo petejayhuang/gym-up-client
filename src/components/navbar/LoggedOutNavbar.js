@@ -18,6 +18,7 @@ const Nav = styled.section`
   padding: 0;
   margin: 0;
   height: 50px;
+  box-shadow: 2px 2px 5px ${appStyles.colors.grey};
 `
 // Left half of navbar
 const Brand = styled.div`

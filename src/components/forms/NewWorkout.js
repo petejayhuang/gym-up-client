@@ -2,18 +2,38 @@
 import React, { Component } from 'react'
 import moment from 'moment'
 import { connect } from 'react-redux'
-import { createWorkout } from '../../actions'
+import { lookupExercises, createWorkout } from '../../actions'
 
 // Styles
 import styled from 'styled-components'
 import appStyles from '../../assets/css/appStyles'
 
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`
 const Input = styled.input`
   height: 40px;
   margin-top: 10px;
   border: none;
   border: 1px solid ${appStyles.colors.grey};
   border-left: 2px solid ${appStyles.colors.primary};
+  width: 300px;
+  padding-left: 10px;
+  font-size: 18px;
+`
+
+const Dropdown = styled.select`
+  height: 40px;
+  margin-top: 10px;
+  border: none;
+  border: 1px solid ${appStyles.colors.grey};
+  border-left: 2px solid ${appStyles.colors.primary};
+  border-radius: 0;
+  appearance: none;
+  background: white;
   width: 300px;
   padding-left: 10px;
   font-size: 18px;
@@ -38,40 +58,56 @@ class NewWorkout extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      name: "",
-      weight: "",
-      repetitions: "",
-      sets: "",
-      difficulty: "",
-      comment: ""
+      workoutId: null,
+      weight: null,
+      reps: null,
     }
 
+    this.handleDropdownChange = this.handleDropdownChange.bind(this)
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleAddWorkout = this.handleAddWorkout.bind(this)
+    this.renderExercisesDropdown = this.renderExercisesDropdown.bind(this)
+  }
+
+  componentDidMount() {
+    this.props.lookupExercises()
+  }
+
+  handleDropdownChange(event) {
+    this.setState({
+      workoutId: parseInt(event.target.value)
+    })
   }
 
   handleInputChange(key, e) {
-    console.log("handleInputChange()")
     const tempObject = {}
-    tempObject[key] = e.target.value;
+    tempObject[key] = parseInt(e.target.value)
     this.setState(tempObject)
   }
 
+  
+  renderExercisesDropdown() {
+    return (
+      <Dropdown onChange={this.handleDropdownChange}>
+        {
+          this.props.exercises.map((exercise, index) => {
+            return (<option value={exercise.workoutId} key={index}> {exercise.name}</option>)
+          })
+        }
+      </Dropdown>
+    )
+  }
+  
   handleAddWorkout(event) {
-    console.log("handleAddWorkout()")
     this.props.createWorkout(this.state)
   }
 
-
   render() {
-    console.log("nWorkout state", this.state)
     return (
-      <div>
-        <Input
-          onChange={(e) => this.handleInputChange("name", e)}
-          value={this.state.name}
-          placeholder="Workout Name"
-        />
+      <Container>
+
+        {this.renderExercisesDropdown()}
+
         <Input
           onChange={(e) => this.handleInputChange("weight", e)}
           value={this.state.weight}
@@ -86,10 +122,16 @@ class NewWorkout extends Component {
         <AddWorkoutButton
           onClick={this.handleAddWorkout}
         >Add Workout</AddWorkoutButton>
-      </div>
+      </Container>
 
     )
   }
 }
 
-export default connect(null, { createWorkout })(NewWorkout)
+const mapStateToProps = (state) => {
+  return {
+    exercises: state.exercises
+  }
+}
+
+export default connect(mapStateToProps, { lookupExercises, createWorkout })(NewWorkout)

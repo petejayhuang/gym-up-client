@@ -7,7 +7,6 @@ const Container = styled.div`
   font-weight: 600;
   font-size: 30px;
   text-align: center;
-  border: 1px solid red;
 `
 
 export default class Home extends Component {
