@@ -8,6 +8,12 @@ import { createSession } from '../../actions'
 import styled from 'styled-components'
 import appStyles from '../../assets/css/appStyles'
 
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`
 const Input = styled.input`
   height: 40px;
   margin-top: 10px;
@@ -38,8 +44,8 @@ class NewWorkout extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      name: "",
-      startTime: ""
+      sessionName: null,
+      start: null
     }
 
     this.handleInputChange = this.handleInputChange.bind(this)
@@ -49,28 +55,27 @@ class NewWorkout extends Component {
   handleInputChange(event) {
     this.setState({
       name: event.target.value,
-      startTime: moment().format("DD-MM-YYYY")
+      startTime: moment().format("DD-MM-YYYY HH:MM")
     })
   }
-  
+
   handleStartSession(event) {
-    console.log("handleAddWorkout()")
     this.props.createSession(this.state)
   }
 
   render() {
     return (
-      <div>
+      <Container>
         <Input
           onChange={this.handleInputChange}
-          value={this.state.name}
+          value={this.state.sessionName}
           placeholder="Session Name"
         />
 
         <StartSessionButton
           onClick={this.handleStartSession}
         >Start Session</StartSessionButton>
-      </div>
+      </Container>
 
     )
   }

@@ -10,18 +10,18 @@ import {
 export default function createUser(state = {}, action) {
   switch (action.type) {
     case CREATE_USER_REQUEST:
-      return state;
+      return state
     case CREATE_USER_SUCCESS:
-      return Object.assign({}, state, action.payload);
+      return Object.assign({}, state, action.payload)
     case UPDATE_USER_REQUEST:
-      return state;
+      return state
     case UPDATE_USER_SUCCESS:
-      return state;
+      return Object.assign({}, state, action.payload)
     case UPDATE_USER_FAILURE:
-      return state;
+      return state
     case DELETE_USER_SUCCESS:
       return {}
     default:
-      return state;
+      return state
   }
 }
