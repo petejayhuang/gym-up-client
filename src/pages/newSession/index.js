@@ -1,14 +1,17 @@
 // Libraries & Methods
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { toggleEditSessionForm } from '../../actions'
 
 // Styles
 import styled from 'styled-components'
 import appStyles from '../../assets/css/appStyles'
+
 // Components
 import SessionPanel from '../../components/sessionPanel'
 import WorkoutPanel from '../../components/workoutPanel'
 import NewSessionForm from '../../components/forms/NewSession'
+import EditSessionForm from '../../components/forms/EditSession'
 import NewWorkoutForm from '../../components/forms/NewWorkout'
 
 const Container = styled.div`
@@ -37,18 +40,28 @@ const FinishSession = styled.button`
 class NewSession extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-    }
+    this.state = {}
+    this.handleToggleClick = this.handleToggleClick.bind(this)
+  }
+
+  handleToggleClick() {
+    this.props.toggleEditSessionForm()
   }
 
   render() {
     return (
       <Container>
         {
+          this.props.showEditSessionForm &&
+          <EditSessionForm session={this.props.session} />
+        }
+
+        {
           this.props.session.sessionMasterId
             ?
             <div>
               <SessionPanel {...this.props.session} />
+              <button onClick={this.handleToggleClick}>Show/Hide Edit Session Form</button>
               <WorkoutPanel workouts={this.props.session.workouts} />
               <NewWorkoutForm />
               {
@@ -64,10 +77,9 @@ class NewSession extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    session: state.currentSession
-  }
-}
+const mapStateToProps = state => ({
+  session: state.currentSession,
+  showEditSessionForm: state.userInterface.showEditSessionForm
+})
 
-export default connect(mapStateToProps, {})(NewSession)
+export default connect(mapStateToProps, { toggleEditSessionForm })(NewSession)
