@@ -2,11 +2,15 @@
 
 const colors = {
   primary: "#0d8aee",
+  primaryDark: "035293",
   primaryLight: "#5CACEE",
   warning: "#FFBC42",
+  warningDark: "#B97907",
   warningLight: "#FFD790",
   danger: "#D81159",
-  dangerLight: "#E76394",
+  danger: "C91E5D",
+  dangerDark: "#80002F",
+  dangerLight: "#E56C99",
   backroundGrey: "#FAFAFA",
   grey: "#E0E0E0",
   text: "#616161"

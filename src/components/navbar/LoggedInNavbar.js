@@ -13,7 +13,6 @@ const Nav = styled.section`
   display: flex;
   flex-direction: row;
   align-items: center;
-  border-top: 3px solid ${appStyles.colors.primary};
   border-bottom: 1px solid ${appStyles.colors.grey};
   padding: 0;
   margin: 0;

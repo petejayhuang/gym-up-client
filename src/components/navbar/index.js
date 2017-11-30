@@ -3,6 +3,29 @@ import { connect } from 'react-redux'
 import LoggedInNavbar from './LoggedInNavbar'
 import LoggedOutNavbar from './LoggedOutNavbar'
 
+import styled from 'styled-components'
+
+const LoadingNavbar = styled.div`
+	width: 100wh;
+	height: 3px;
+	color: #fff;
+	background: linear-gradient(90deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+	background-size: 400% 400%;
+	animation: Gradient 2s ease infinite;
+
+  @keyframes Gradient {
+    0% {
+      background-position: 0% 50%
+    }
+    50% {
+      background-position: 100% 50%
+    }
+    100% {
+      background-position: 0% 50%
+    }
+  }
+`
+
 class Navbars extends Component {
   constructor(props) {
     super(props)
@@ -11,6 +34,7 @@ class Navbars extends Component {
   render() {
     return (
       <div>
+        <LoadingNavbar />
         {this.props.user.userId
           ? <LoggedInNavbar />
           : <LoggedOutNavbar />
