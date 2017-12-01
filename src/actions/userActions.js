@@ -33,18 +33,21 @@ export function createUser() {
 }
 function createUserRequest() {
   return {
-    type: CREATE_USER_REQUEST
+    type: CREATE_USER_REQUEST,
+    requesting: true,
   }
 }
 function createUserSuccess(createdUser) {
   return {
     type: CREATE_USER_SUCCESS,
+    requesting: false,
     payload: createdUser
   }
 }
 function createUserFailure(error) {
   return {
     type: CREATE_USER_FAILURE,
+    requesting: false,
     error: error
   }
 }
@@ -65,17 +68,21 @@ export function deleteUser() {
 }
 function deleteUserRequest() {
   return {
-    type: DELETE_USER_REQUEST
+    type: DELETE_USER_REQUEST,
+    requesting: true
   }
 }
 function deleteUserSuccess() {
   return {
     type: DELETE_USER_SUCCESS,
+    requesting: false
   }
 }
 function deleteUserFailure(error) {
   return {
     type: DELETE_USER_FAILURE,
+    requesting: false,
+    error
   }
 }
 
@@ -99,13 +106,15 @@ export function updateUser() {
 
 function updateUserRequest() {
   return {
-    type: UPDATE_USER_REQUEST
+    type: UPDATE_USER_REQUEST,
+    requesting: true
   }
 }
 
 function updateUserSuccess(updatedUser) {
   return {
     type: UPDATE_USER_SUCCESS,
+    requesting: false,
     payload: updatedUser
   }
 }
@@ -113,6 +122,7 @@ function updateUserSuccess(updatedUser) {
 function updateUserFailure(error) {
   return {
     type: UPDATE_USER_FAILURE,
+    requesting: false,
     error
   }
 }

@@ -25,7 +25,9 @@ const LoadingNavbar = styled.div`
     }
   }
 `
-
+const BlankLoadingNavbar = styled.div`
+  height: 3px;
+`
 class Navbars extends Component {
   constructor(props) {
     super(props)
@@ -34,7 +36,11 @@ class Navbars extends Component {
   render() {
     return (
       <div>
-        <LoadingNavbar />
+        {
+          this.props.requesting
+            ? <LoadingNavbar />
+            : <BlankLoadingNavbar />
+        }
         {this.props.user.userId
           ? <LoggedInNavbar />
           : <LoggedOutNavbar />
@@ -46,7 +52,8 @@ class Navbars extends Component {
 
 function mapStateToProps(state) {
   return {
-    user: state.user
+    user: state.user,
+    requesting: state.requesting
   }
 }
 
