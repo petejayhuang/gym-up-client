@@ -24,7 +24,6 @@ const Input = styled.input`
   padding-left: 10px;
   font-size: 18px;
 `
-
 const Dropdown = styled.select`
   height: 40px;
   margin-top: 10px;
@@ -38,7 +37,6 @@ const Dropdown = styled.select`
   padding-left: 10px;
   font-size: 18px;
 `
-
 const AddWorkoutButton = styled.button`
   margin-top: 40px;  
   border-radius: 3px;
@@ -54,13 +52,13 @@ const AddWorkoutButton = styled.button`
   }
 `
 
-class NewWorkout extends Component {
+class CreateWorkout extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      workoutId: null,
-      weight: null,
-      reps: null,
+      workoutId: "",
+      weight: "",
+      reps: ""
     }
 
     this.handleDropdownChange = this.handleDropdownChange.bind(this)
@@ -74,6 +72,7 @@ class NewWorkout extends Component {
   }
 
   handleDropdownChange(event) {
+    console.log(event.target.value)
     this.setState({
       workoutId: parseInt(event.target.value)
     })
@@ -85,7 +84,7 @@ class NewWorkout extends Component {
     this.setState(tempObject)
   }
 
-  
+
   renderExercisesDropdown() {
     return (
       <Dropdown onChange={this.handleDropdownChange}>
@@ -97,9 +96,14 @@ class NewWorkout extends Component {
       </Dropdown>
     )
   }
-  
+
   handleAddWorkout(event) {
     this.props.createWorkout(this.state)
+    this.setState({
+      workoutId: "",
+      weight: "",
+      reps: ""
+    })
   }
 
   render() {
@@ -114,8 +118,8 @@ class NewWorkout extends Component {
           placeholder="Workout Weight"
         />
         <Input
-          onChange={(e) => this.handleInputChange("repetitions", e)}
-          value={this.state.repetitions}
+          onChange={(e) => this.handleInputChange("reps", e)}
+          value={this.state.reps}
           placeholder="Workout Repetitions"
         />
 
@@ -134,4 +138,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { lookupExercises, createWorkout })(NewWorkout)
+export default connect(mapStateToProps, { lookupExercises, createWorkout })(CreateWorkout)

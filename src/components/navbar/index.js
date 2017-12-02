@@ -6,7 +6,7 @@ import LoggedOutNavbar from './LoggedOutNavbar'
 import styled from 'styled-components'
 
 const LoadingNavbar = styled.div`
-	width: 100wh;
+	width: 100%;
 	height: 3px;
 	color: #fff;
 	background: linear-gradient(90deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);

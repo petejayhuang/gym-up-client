@@ -66,7 +66,7 @@ class LoggedInNavbar extends Component {
         <Brand><HomeNavLink to="/">GymApp</HomeNavLink></Brand>
         <Links>
           <NavLinks>
-            <NavLink to="/new">New Session</NavLink>
+            <NavLink to="/create">Create Session</NavLink>
             <NavLink to="/dashboard">Dashboard</NavLink>
             <NavLink to="/profile">Profile</NavLink>
             <NavLink to="/logout">Log out</NavLink>

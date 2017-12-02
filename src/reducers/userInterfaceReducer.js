@@ -1,17 +1,17 @@
-import { TOGGLE_EDIT_SESSION_FORM } from '../actions/actionTypes'
+import { TOGGLE_UPDATE_SESSION_FORM } from '../actions/actionTypes'
 
 const initialState = {
-  showEditSessionForm: false
+  showUpdateSessionForm: false
 }
 
-const editSessionForm = (state = initialState, action) => {
+const updateSessionForm = (state = initialState, action) => {
   switch (action.type) {
-    case TOGGLE_EDIT_SESSION_FORM:
-      const tempShowFormValue = state.showEditSessionForm
-      return Object.assign({}, state, { showEditSessionForm: !tempShowFormValue })
+    case TOGGLE_UPDATE_SESSION_FORM:
+      const tempShowFormValue = state.showUpdateSessionForm
+      return Object.assign({}, state, { showUpdateSessionForm: !tempShowFormValue })
     default:
       return state;
   }
 }
 
-export default editSessionForm
+export default updateSessionForm

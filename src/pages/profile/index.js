@@ -5,7 +5,7 @@ import {
   deleteUser
 } from '../../actions/userActions'
 
-import EditForm from './EditForm'
+import UpdateForm from './UpdateForm'
 import styled from 'styled-components'
 import appStyles from '../../assets/css/appStyles'
 
@@ -49,22 +49,22 @@ class Profile extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      showEditForm: false,
+      showUpdateForm: false,
       showDiscardChangesButton: false,
       showSaveChangesButton: false,
-      showEditButton: true,
+      showUpdateButton: true,
       showDeleteButton: true
     }
-    this.handleEditClick = this.handleEditClick.bind(this)
+    this.handleUpdateClick = this.handleUpdateClick.bind(this)
     this.handleDeleteClick = this.handleDeleteClick.bind(this)
     this.handleSaveChangesClick = this.handleSaveChangesClick.bind(this)
     this.handleDiscardChangesClick = this.handleDiscardChangesClick.bind(this)
   }
 
-  handleEditClick() {
+  handleUpdateClick() {
     this.setState({
-      showEditForm: true,
-      showEditButton: false,
+      showUpdateForm: true,
+      showUpdateButton: false,
       showDeleteButton: false,
       showDiscardChangesButton: true,
       showSaveChangesButton: true
@@ -77,8 +77,8 @@ class Profile extends Component {
 
   handleSaveChangesClick() {
     this.setState({
-      showEditForm: false,
-      showEditButton: true,
+      showUpdateForm: false,
+      showUpdateButton: true,
       showDeleteButton: true,
       showDiscardChangesButton: false,
       showSaveChangesButton: false
@@ -88,8 +88,8 @@ class Profile extends Component {
 
   handleDiscardChangesClick() {
     this.setState({
-      showEditForm: false,
-      showEditButton: true,
+      showUpdateForm: false,
+      showUpdateButton: true,
       showDeleteButton: true,
       showDiscardChangesButton: false,
       showSaveChangesButton: false
@@ -105,12 +105,12 @@ class Profile extends Component {
           <div>{this.props.user.firstName}</div>
           <div>{this.props.user.lastName}</div>
           <div>{this.props.user.email}</div>
-          {this.state.showEditForm ? <EditForm /> : ""}
+          {this.state.showUpdateForm ? <UpdateForm /> : ""}
         </div>
         <div>
 
-          {this.state.showEditButton
-            ? <Button onClick={this.handleEditClick}>Edit</Button>
+          {this.state.showUpdateButton
+            ? <Button onClick={this.handleUpdateClick}>Update</Button>
             : ""
           }
 

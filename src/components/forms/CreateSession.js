@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 import moment from 'moment'
 import { connect } from 'react-redux'
-import { editSession } from '../../actions'
+import { createSession } from '../../actions'
 
 // Styles
 import styled from 'styled-components'
@@ -25,7 +25,7 @@ const Input = styled.input`
   font-size: 18px;
 `
 
-const EditSessionButton = styled.button`
+const StartSessionButton = styled.button`
   margin-top: 40px;  
   border-radius: 3px;
   border: none;
@@ -40,56 +40,45 @@ const EditSessionButton = styled.button`
   }
 `
 
-class EditSession extends Component {
+class CreateWorkout extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      name: null,
-      createdAt: null
+      sessionName: null,
+      start: null
     }
+
     this.handleInputChange = this.handleInputChange.bind(this)
-    this.handleEditSession = this.handleEditSession.bind(this)
+    this.handleStartSession = this.handleStartSession.bind(this)
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setState(nextProps.session)
+  handleInputChange(event) {
+    this.setState({
+      name: event.target.value,
+      startTime: moment().format("DD-MM-YYYY HH:MM")
+    })
   }
 
-  handleInputChange(inputField, e) {
-    const tempObject = {}
-    tempObject[inputField] = e.target.value;
-    this.setState(tempObject)
+  handleStartSession(event) {
+    this.props.createSession(this.state)
   }
-
-  handleEditSession(event) {
-    this.props.editSession(this.state)
-  }
-
 
   render() {
-    console.log(this.state)
     return (
       <Container>
-
         <Input
-          onChange={(e) => this.handleInputChange("name", e)}
-          value={this.state.name}
+          onChange={this.handleInputChange}
+          value={this.state.sessionName}
           placeholder="Session Name"
         />
 
-        <Input
-          onChange={(e) => this.handleInputChange("createdAt", e)}
-          value={this.state.createdAt}
-          placeholder="Session Start Time"
-        />
-
-        <EditSessionButton
-          onClick={this.handleEditSession}
-        >Edit Session</EditSessionButton>
+        <StartSessionButton
+          onClick={this.handleStartSession}
+        >Start Session</StartSessionButton>
       </Container>
 
     )
   }
 }
 
-export default connect(null, { editSession })(EditSession)
+export default connect(null, { createSession })(CreateWorkout)

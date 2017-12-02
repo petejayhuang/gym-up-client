@@ -1,18 +1,18 @@
 // Libraries & Methods
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { toggleEditSessionForm } from '../../actions'
+import { toggleUpdateSessionForm } from '../../actions'
 
 // Styles
 import styled from 'styled-components'
 import appStyles from '../../assets/css/appStyles'
 
 // Components
-import SessionPanel from '../../components/sessionPanel'
-import WorkoutPanel from '../../components/workoutPanel'
-import NewSessionForm from '../../components/forms/NewSession'
-import EditSessionForm from '../../components/forms/EditSession'
-import NewWorkoutForm from '../../components/forms/NewWorkout'
+import SessionPanel from '../../components/panels/SessionPanel'
+import WorkoutPanel from '../../components/panels/WorkoutPanel'
+import CreateSessionForm from '../../components/forms/CreateSession'
+import UpdateSessionForm from '../../components/forms/UpdateSession'
+import CreateWorkoutForm from '../../components/forms/CreateWorkout'
 
 const Container = styled.div`
   background-color: ${appStyles.colors.backroundGrey};
@@ -37,23 +37,25 @@ const FinishSession = styled.button`
   }
 `
 
-class NewSession extends Component {
+class CreateSession extends Component {
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+      showUpdateSessionForm
+    }
     this.handleToggleClick = this.handleToggleClick.bind(this)
   }
 
   handleToggleClick() {
-    this.props.toggleEditSessionForm()
+    this.props.toggleUpdateSessionForm()
   }
 
   render() {
     return (
       <Container>
         {
-          this.props.showEditSessionForm &&
-          <EditSessionForm session={this.props.session} />
+          this.props.showUpdateSessionForm &&
+          <UpdateSessionForm session={this.props.session} />
         }
 
         {
@@ -61,16 +63,17 @@ class NewSession extends Component {
             ?
             <div>
               <SessionPanel {...this.props.session} />
-              <button onClick={this.handleToggleClick}>Show/Hide Edit Session Form</button>
+
+
               <WorkoutPanel workouts={this.props.session.workouts} />
-              <NewWorkoutForm />
+              <CreateWorkoutForm />
               {
                 this.props.session.workouts.length > 0 &&
                 <FinishSession>Finish Session</FinishSession>
               }
             </div>
 
-            : <NewSessionForm />
+            : <CreateSessionForm />
         }
       </Container>
     )
@@ -79,7 +82,7 @@ class NewSession extends Component {
 
 const mapStateToProps = state => ({
   session: state.currentSession,
-  showEditSessionForm: state.userInterface.showEditSessionForm
+  showUpdateSessionForm: state.userInterface.showUpdateSessionForm
 })
 
-export default connect(mapStateToProps, { toggleEditSessionForm })(NewSession)
+export default connect(mapStateToProps, { toggleUpdateSessionForm })(CreateSession)

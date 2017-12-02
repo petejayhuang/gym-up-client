@@ -18,7 +18,7 @@ const Form = styled.div`
   align-items: center;
 `
 
-class EditForm extends Component {
+class UpdateForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -56,4 +56,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, null)(EditForm)
+export default connect(mapStateToProps, null)(UpdateForm)

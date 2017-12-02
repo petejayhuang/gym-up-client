@@ -1,5 +1,5 @@
-import { TOGGLE_EDIT_SESSION_FORM } from './actionTypes'
+import { TOGGLE_UPDATE_SESSION_FORM } from './actionTypes'
 
-export const toggleEditSessionForm = () => ({
-  type: TOGGLE_EDIT_SESSION_FORM
+export const toggleUpdateSessionForm = () => ({
+  type: TOGGLE_UPDATE_SESSION_FORM
 })

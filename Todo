@@ -1,0 +1,9 @@
+=====================================================================================================================================================
+                                                                      To do list                          
+=====================================================================================================================================================
+
+Added 02/12/2017
+[ ] The update/ delete session form should be nested within the SesssionPanel, this way you can show 1 session, or a list of sessions! 
+[ ] API wasn't working so created fake session and workout payloads - remove
+[ ] Generalise the buttons: large, small, primary, secondary, colors
+[ ] Host on heroku
