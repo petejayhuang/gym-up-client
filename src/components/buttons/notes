@@ -1,0 +1,57 @@
+// 2 sizes: small and regular
+// 3 styles: 
+//  outline (color border, color text); on hover: no border, white text, color fill
+//  filled (no border, white text & color fill); on hover: 
+//  white (no border, color text)
+
+
+                  NO INTERACTION                                HOVER
+                  border          fill          text            border          fill          text
+--------------------------------------------------------------------------------------------------------------------------------------------
+FILLED            none            color         white           none            darker        white
+--------------------------------------------------------------------------------------------------------------------------------------------
+OUTLINE           color           white         color           none            color         white
+--------------------------------------------------------------------------------------------------------------------------------------------
+WHITE             none            white         color           none            white         color
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+
+commonalities     shadow                                        shadow heavy
+                                                                transform 1px y -1
+
+button:hover {
+  color: #7795f8;
+  transform: translateY(-1px);
+  box-shadow: 0 7px 14px rgba(50,50,93,.1), 0 3px 6px rgba(0,0,0,.08);
+}
+
+
+
+
+ 
+
+  .filled {
+    background: ${primary};
+    color: white;
+    border: 1px solid ${primary};    
+    &:hover {
+      background: ${primaryLight};
+      border: 1px solid ${primaryLight};
+      transform: translateY(-1px);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, .2);
+    };
+  };
+
+  .outline {
+    background: white;
+    color: ${primary};
+    border: 1px solid ${primary};
+    &:hover {
+      background: ${primary};
+      color: white; 
+      transform: translateY(-1px);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, .2);
+    };
+  };
+
+

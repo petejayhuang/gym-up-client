@@ -8,7 +8,7 @@ import styled from 'styled-components'
 import appStyles from '../../assets/css/appStyles'
 
 // Components
-import SessionPanel from '../../components/panels/SessionPanel'
+import SingleSessionPanel from '../../components/panels/SingleSessionPanel'
 import WorkoutPanel from '../../components/panels/WorkoutPanel'
 import CreateSessionForm from '../../components/forms/CreateSession'
 import UpdateSessionForm from '../../components/forms/UpdateSession'
@@ -41,7 +41,7 @@ class CreateSession extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      showUpdateSessionForm
+      showUpdateSessionForm: false
     }
     this.handleToggleClick = this.handleToggleClick.bind(this)
   }
@@ -54,7 +54,7 @@ class CreateSession extends Component {
     return (
       <Container>
         {
-          this.props.showUpdateSessionForm &&
+          this.state.showUpdateSessionForm &&
           <UpdateSessionForm session={this.props.session} />
         }
 
@@ -62,7 +62,7 @@ class CreateSession extends Component {
           this.props.session.sessionMasterId
             ?
             <div>
-              <SessionPanel {...this.props.session} />
+              <SingleSessionPanel session={this.props.session} />
 
 
               <WorkoutPanel workouts={this.props.session.workouts} />
@@ -81,8 +81,7 @@ class CreateSession extends Component {
 }
 
 const mapStateToProps = state => ({
-  session: state.currentSession,
-  showUpdateSessionForm: state.userInterface.showUpdateSessionForm
+  session: state.currentSession
 })
 
 export default connect(mapStateToProps, { toggleUpdateSessionForm })(CreateSession)

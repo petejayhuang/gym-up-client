@@ -3,16 +3,16 @@ import textInput from './textInputReducer'
 import user from './userReducer'
 import exercises from './exerciseReducer'
 import { sessionsReducer } from './sessionReducer'
-import userInterface from './userInterfaceReducer'
 import requesting from './requestReducer'
+import sessions from './sessionsReducer'
 
 const reducers = combineReducers({
   registerForm: textInput,
   currentSession: sessionsReducer,
   user,
   exercises,
-  userInterface,
-  requesting
+  requesting,
+  sessions
 })
 
 export default reducers;

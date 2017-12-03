@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 import moment from 'moment'
 import { connect } from 'react-redux'
-import { updateSession } from '../../actions'
+import { updateSession, deleteSession } from '../../actions'
 
 // Styles
 import styled from 'styled-components'
@@ -24,6 +24,21 @@ const Input = styled.input`
   padding-left: 10px;
   font-size: 18px;
 `
+const DiscardChangesButton = styled.button`
+  margin-top: 20px;
+  border-radius: 3px;
+  border: 1px solid ${appStyles.colors.warningLight};
+  color: ${appStyles.colors.warningLight};
+  background-color: white;
+  height: 40px;
+  width: 300px;
+  font-size: 16px;
+  font-weight: 600;
+  &:hover {
+    background-color: ${appStyles.colors.warning};
+    color: ${appStyles.colors.warningLight};
+  }
+`
 
 const UpdateSessionButton = styled.button`
   margin-top: 40px;  
@@ -39,6 +54,7 @@ const UpdateSessionButton = styled.button`
     background-color: ${appStyles.colors.primaryLight};
   }
 `
+
 
 class UpdateSession extends Component {
   constructor(props) {
@@ -82,6 +98,10 @@ class UpdateSession extends Component {
           placeholder="Session Start Time"
         />
 
+        <DiscardChangesButton
+          onClick={this.props.hideUpdateSessionForm}
+        >Discard Changes</DiscardChangesButton>
+
         <UpdateSessionButton
           onClick={this.handleUpdateSession}
         >Update Session</UpdateSessionButton>
@@ -91,4 +111,4 @@ class UpdateSession extends Component {
   }
 }
 
-export default connect(null, { updateSession })(UpdateSession)
+export default connect(null, { updateSession, deleteSession })(UpdateSession)

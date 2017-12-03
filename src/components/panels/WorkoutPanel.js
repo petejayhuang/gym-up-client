@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 
 // Components
 import UpdateWorkout from '../forms/UpdateWorkout'
+import Button from '../buttons'
 
 // Styles
 import styled, { css } from 'styled-components'
@@ -17,6 +18,7 @@ const Container = styled.div`
   justify-content: center;
 `
 const WorkoutCard = styled.div`
+  width: 300px;
   border: 1px solid ${appStyles.colors.grey};
   background-color: white;
   display: flex;
@@ -32,19 +34,6 @@ const WorkoutCard = styled.div`
 const Buttons = styled.div`
   display: flex;
   justify-content: space-between;
-`
-const Button = styled.button`
-  width: 45%;
-  padding-top: 3px;
-  padding-bottom: 3px;
-  border-radius: 3px;
-  background: white;
-  border: 1px solid ${appStyles.colors.warning};
-  color: ${appStyles.colors.warning};
-  &:hover {
-    background-color: ${appStyles.colors.warning};
-    color: white;
-  }
 `
 
 class WorkoutPanel extends Component {
@@ -96,8 +85,17 @@ class WorkoutPanel extends Component {
               <p><strong>Weight:</strong> {workout.weight}</p>
               <p><strong>Repetitions: </strong>{workout.reps}</p>
               <Buttons>
-                <Button onClick={() => this.handleUpdateClick(workout.sessionDetailId)}>(update)</Button>
-                <Button onClick={() => this.handleDeleteClick(workout.sessionDetailId)}>(delete)</Button>
+                <Button
+                  warning
+                  className="outline small"
+                  onClick={() => this.handleUpdateClick(workout.sessionDetailId)}>
+                  update
+                </Button>
+                <Button
+                  warning
+                  className="filled small"
+                  onClick={() => this.handleDeleteClick(workout.sessionDetailId)}>
+                  delete</Button>
               </Buttons>
             </WorkoutCard>
 
