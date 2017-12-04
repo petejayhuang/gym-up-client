@@ -10,8 +10,10 @@ import appStyles from "../../assets/css/appStyles";
 
 // Styles
 const Nav = styled.section`
+  background: white;
   display: flex;
   flex-direction: row;
+  justify-content: center;
   align-items: center;
   border-bottom: 1px solid ${appStyles.colors.grey};
   padding: 0;

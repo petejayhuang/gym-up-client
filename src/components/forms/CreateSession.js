@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import moment from 'moment'
 import { connect } from 'react-redux'
 import { createSession } from '../../actions'
+import Button from '../buttons'
 
 // Styles
 import styled from 'styled-components'
@@ -14,30 +15,27 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
 `
+const InputWrapper = styled.div` 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  padding-left: 20px;
+  padding-right: 20px;
+  width: 300px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, .1);   
+`
 const Input = styled.input`
   height: 40px;
-  margin-top: 10px;
   border: none;
+  width: 300px;
   border: 1px solid ${appStyles.colors.grey};
   border-left: 2px solid ${appStyles.colors.primary};
-  width: 300px;
   padding-left: 10px;
   font-size: 18px;
-`
-
-const StartSessionButton = styled.button`
-  margin-top: 40px;  
-  border-radius: 3px;
-  border: none;
-  color: white;
-  background-color: ${appStyles.colors.primary};
-  height: 40px;
-  width: 300px;
-  font-size: 16px;
-  font-weight: 600;
-  &:hover {
-    background-color: ${appStyles.colors.primaryLight};
-  }
 `
 
 class CreateWorkout extends Component {
@@ -66,15 +64,18 @@ class CreateWorkout extends Component {
   render() {
     return (
       <Container>
-        <Input
-          onChange={this.handleInputChange}
-          value={this.state.sessionName}
-          placeholder="Session Name"
-        />
+        <InputWrapper>
+          <Input
+            onChange={this.handleInputChange}
+            value={this.state.sessionName}
+            placeholder="Session Name"
+          />
+        </InputWrapper>
 
-        <StartSessionButton
+        <Button
+          className="filled"
           onClick={this.handleStartSession}
-        >Start Session</StartSessionButton>
+        >Start Session</Button>
       </Container>
 
     )

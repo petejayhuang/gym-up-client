@@ -6,6 +6,8 @@ import {
 } from '../../actions/userActions'
 
 import UpdateForm from './UpdateForm'
+import Button from '../../components/buttons'
+
 import styled from 'styled-components'
 import appStyles from '../../assets/css/appStyles'
 
@@ -26,23 +28,6 @@ const Form = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`
-const Button = styled.button`
-  margin: 40px 10px;  
-  border-radius: 3px;
-  border: 1px solid ${appStyles.colors.primary};
-  color: ${appStyles.colors.primary};
-  background-color: white;
-  height: 40px;
-  width: 200px;
-  font-size: ${appStyles.fontSizes.button};
-  font-weight: 600;
-  &:hover {
-  background-color: white;
-    background-color: ${appStyles.colors.primaryLight};
-    border: 1px solid ${appStyles.colors.primaryLight};
-    color: white;
-  }
 `
 
 class Profile extends Component {

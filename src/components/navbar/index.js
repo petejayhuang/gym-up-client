@@ -12,7 +12,6 @@ const LoadingNavbar = styled.div`
 	background: linear-gradient(90deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
 	background-size: 400% 400%;
 	animation: Gradient 2s ease infinite;
-
   @keyframes Gradient {
     0% {
       background-position: 0% 50%

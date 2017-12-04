@@ -13,30 +13,14 @@ import WorkoutPanel from '../../components/panels/WorkoutPanel'
 import CreateSessionForm from '../../components/forms/CreateSession'
 import UpdateSessionForm from '../../components/forms/UpdateSession'
 import CreateWorkoutForm from '../../components/forms/CreateWorkout'
+import Button from '../../components/buttons'
 
 const Container = styled.div`
-  background-color: ${appStyles.colors.backroundGrey};
   padding: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
 `
-const FinishSession = styled.button`
-  margin-top: 40px;  
-  border-radius: 3px;
-  border: 1px solid ${appStyles.colors.warning};
-  color: ${appStyles.colors.warning};
-  background-color: white;
-  height: 40px;
-  width: 300px;
-  font-size: 16px;
-  font-weight: 600;
-  &:hover {
-    background-color: ${appStyles.colors.warning};
-    color: white;
-  }
-`
-
 class CreateSession extends Component {
   constructor(props) {
     super(props)
@@ -54,27 +38,30 @@ class CreateSession extends Component {
     return (
       <Container>
         {
+          this.props.session.sessionMasterId
+            ? ''
+            : <CreateSessionForm />
+        }
+
+        {
           this.state.showUpdateSessionForm &&
           <UpdateSessionForm session={this.props.session} />
         }
 
+
         {
-          this.props.session.sessionMasterId
-            ?
-            <div>
-              <SingleSessionPanel session={this.props.session} />
-
-
-              <WorkoutPanel workouts={this.props.session.workouts} />
-              <CreateWorkoutForm />
-              {
-                this.props.session.workouts.length > 0 &&
-                <FinishSession>Finish Session</FinishSession>
-              }
-            </div>
-
-            : <CreateSessionForm />
+          this.props.session.sessionMasterId &&
+          <div>
+            <SingleSessionPanel session={this.props.session} />
+            <CreateWorkoutForm />
+            <WorkoutPanel workouts={this.props.session.workouts} />
+          </div>
         }
+        {
+          this.props.session.workouts.length > 0 &&
+          <Button className="filled">Finish Session</Button>
+        }
+
       </Container>
     )
   }

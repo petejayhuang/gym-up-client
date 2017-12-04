@@ -1,5 +1,10 @@
 // https://material.io/guidelines/style/color.html#color-color-palette
 
+// heights in multiples of 100
+// padding in multiples of 10
+// margin in multiples of 30 (from app edges, other boxes)
+
+
 const colors = {
   primary: "#0d8aee",
   primaryDark: "#035293",

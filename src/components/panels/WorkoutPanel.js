@@ -12,18 +12,21 @@ import styled, { css } from 'styled-components'
 import appStyles from '../../assets/css/appStyles'
 
 const Container = styled.div`
+  margin-top: 30px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
 `
 const WorkoutCard = styled.div`
-  width: 300px;
-  border: 1px solid ${appStyles.colors.grey};
-  background-color: white;
+  width: 150px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background-image: linear-gradient(to top, #ffd1ff 0%,  #fad0c4 100%);
+  color: white;
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  padding: 20px;
   margin: 10px;
   p {
     margin: 0px;
@@ -32,8 +35,7 @@ const WorkoutCard = styled.div`
   box-shadow: 2px 2px 5px ${appStyles.colors.grey};
 `
 const Buttons = styled.div`
-  display: flex;
-  justify-content: space-between;
+  
 `
 
 class WorkoutPanel extends Component {
@@ -86,14 +88,14 @@ class WorkoutPanel extends Component {
               <p><strong>Repetitions: </strong>{workout.reps}</p>
               <Buttons>
                 <Button
-                  warning
-                  className="outline small"
+
+                  className="small"
                   onClick={() => this.handleUpdateClick(workout.sessionDetailId)}>
                   update
                 </Button>
                 <Button
-                  warning
-                  className="filled small"
+
+                  className="small"
                   onClick={() => this.handleDeleteClick(workout.sessionDetailId)}>
                   delete</Button>
               </Buttons>

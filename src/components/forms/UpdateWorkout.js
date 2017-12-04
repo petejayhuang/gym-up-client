@@ -3,6 +3,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { updateWorkout } from '../../actions'
 
+// Components 
+import Button from '../buttons'
 // Styles
 import styled from 'styled-components'
 import appStyles from '../../assets/css/appStyles'
@@ -23,35 +25,6 @@ const Input = styled.input`
   padding-left: 10px;
   font-size: 18px;
 `
-const DiscardChangesButton = styled.button`
-  margin-top: 20px;
-  border-radius: 3px;
-  border: 1px solid ${appStyles.colors.warningLight};
-  color: ${appStyles.colors.warningLight};
-  background-color: white;
-  height: 40px;
-  width: 300px;
-  font-size: 16px;
-  font-weight: 600;
-  &:hover {
-    background-color: ${appStyles.colors.warning};
-    color: ${appStyles.colors.warningLight};
-  }
-`
-const UpdateWorkoutButton = styled.button`
-  border-radius: 3px;
-  border: none;
-  color: white;
-  background-color: ${appStyles.colors.warningLight};
-  height: 40px;
-  width: 300px;
-  font-size: 16px;
-  font-weight: 600;
-  &:hover {
-    background-color: ${appStyles.colors.warning};
-  }
-`
-
 class UpdateWorkout extends Component {
   constructor(props) {
     super(props)
@@ -97,13 +70,13 @@ class UpdateWorkout extends Component {
         />
 
 
-        <DiscardChangesButton
+        <Button
           onClick={this.props.hideUpdateWorkoutForm}
-        >Discard Changes</DiscardChangesButton>
+        >Discard Changes</Button>
 
-        <UpdateWorkoutButton
+        <Button
           onClick={this.handleUpdateWorkout}
-        >Update Workout</UpdateWorkoutButton>
+        >Update Workout</Button>
       </Container>
     )
   }
