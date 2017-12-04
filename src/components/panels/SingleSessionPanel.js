@@ -16,7 +16,7 @@ const SessionPanel = (props) => {
   return (
     <Container>
       <div>
-        Session "{props.name}" started at {props.startTime} (update)
+        Session "{props.session.name}" started at {props.session.startTime} (update)
       </div>
     </Container>
   )

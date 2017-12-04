@@ -6,6 +6,7 @@ import Login from './Login'
 import Profile from './Profile'
 import Register from './Register'
 import Sessions from './Sessions'
+import Testing from './Testing'
 
 const routes = [
   { path: "/", component: Landing, exact: true },
@@ -14,6 +15,7 @@ const routes = [
   { path: "/profile", component: Profile },
   { path: "/register", component: Register },
   { path: "/sessions", component: Sessions },
+  { path: "/testing", component: Testing },
   { path: "/create", component: CreateSession }
 ]
 

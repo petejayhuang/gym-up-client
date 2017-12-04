@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import TextInput from '../../components/forms/TextInput'
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
 // import { sendRegisterForm } from '../../actions';
+import Button from '../../components/buttons'
 
-import styled from 'styled-components';
-import appStyles from '../../assets/css/appStyles';
+import styled from 'styled-components'
+import appStyles from '../../assets/css/appStyles'
 
 const PageHeading = styled.h1`
   font-weight: 600;
@@ -17,20 +18,6 @@ const Form = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`
-const SignUpButton = styled.button`
-  margin-top: 40px;  
-  border-radius: 3px;
-  border: none;
-  color: white;
-  background-color: ${appStyles.colors.primary};
-  height: 40px;
-  width: 300px;
-  font-size: 16px;
-  font-weight: 600;
-  &:hover {
-    background-color: ${appStyles.colors.secondary}
-  }
 `
 
 class Login extends Component {
@@ -51,9 +38,12 @@ class Login extends Component {
         <Form>
           <TextInput textKey="email" label="Email" value="aosda@gmail.com" />
           <TextInput textKey="password" label="Password" type="password" value="aosidjaoisdj" />
-          <SignUpButton onClick={this.handleClick}>
-            Log In
-        </SignUpButton>
+          <Button
+            primary
+            className="filled"
+            onClick={this.handleClick}>
+            LOG IN 
+        </Button>
         </Form>
       </div>
 
