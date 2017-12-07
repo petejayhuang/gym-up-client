@@ -1,7 +1,6 @@
 // Libraries & Methods
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { toggleUpdateSessionForm } from '../../actions'
 
 // Styles
 import styled from 'styled-components'
@@ -20,6 +19,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 `
 class CreateSession extends Component {
   constructor(props) {
@@ -27,11 +27,6 @@ class CreateSession extends Component {
     this.state = {
       showUpdateSessionForm: false
     }
-    this.handleToggleClick = this.handleToggleClick.bind(this)
-  }
-
-  handleToggleClick() {
-    this.props.toggleUpdateSessionForm()
   }
 
   render() {
@@ -71,4 +66,4 @@ const mapStateToProps = state => ({
   session: state.currentSession
 })
 
-export default connect(mapStateToProps, { toggleUpdateSessionForm })(CreateSession)
+export default connect(mapStateToProps)(CreateSession)

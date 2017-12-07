@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import Button from '../../components/buttons'
 
 const Container = styled.div`
   width: 400px;
@@ -10,13 +11,24 @@ const Container = styled.div`
 `
 
 export default class Home extends Component {
-  render(){
-    return(
+  render() {
+    return (
       <Container>
         Use GymApp to reach your wildest goals.
         Start a session.
         Add workouts to your session.
-        Get fit. 
+        Get fit.
+        <Button>Test</Button>
+        <Button warning>Test</Button>
+        <Button>Test</Button>
+        <Button>Test</Button>
+        <Button className="outline">Test</Button>
+        <Button className="filled">Test</Button>
+        <Button className="filled">Test</Button>
+        <Button className="filled small">Test</Button>
+        <Button warning className="filled small">Test</Button>
+        <Button danger className="filled small">Test</Button>
+
       </Container>
     )
   }

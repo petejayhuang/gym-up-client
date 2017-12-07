@@ -6,6 +6,14 @@ import { sessionsReducer } from './sessionReducer'
 import requesting from './requestReducer'
 import sessions from './sessionsReducer'
 
+
+const rootReducer = (state, action) => {
+  if (action.type === "LOGOUT_SUCCESS") {
+    state = {};
+  }
+  return reducers(state, action)
+}
+
 const reducers = combineReducers({
   registerForm: textInput,
   currentSession: sessionsReducer,
@@ -15,4 +23,4 @@ const reducers = combineReducers({
   sessions
 })
 
-export default reducers;
+export default rootReducer;

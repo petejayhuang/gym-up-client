@@ -1,5 +1,9 @@
 import axios from 'axios'
 import {
+  FETCH_USER_REQUEST,
+  FETCH_USER_SUCCESS,
+  FETCH_USER_FAILURE,
+
   CREATE_USER_REQUEST,
   CREATE_USER_SUCCESS,
   CREATE_USER_FAILURE,
@@ -14,15 +18,13 @@ import {
 } from './actionTypes'
 
 // SEND REGISTER FORM
-export function createUser() {
+export function createUser(registerForm) {
   return (dispatch, getState) => {
     dispatch(createUserRequest())
 
-    const registerForm = getState().registerForm
-
     return axios({
       method: 'POST',
-      url: 'https://gym-up-server.herokuapp.com/api/v1/user',
+      url: 'https://gym-up-server.herokuapp.com/api/v1/auth/register',
       data: registerForm
     })
       .then(response => {
@@ -52,6 +54,42 @@ function createUserFailure(error) {
   }
 }
 
+// User Login
+export const logOut = () => ({
+  type: LOGOUT_SUCCESS
+})
+
+// Fetch User
+export function fetchUser(registerForm) {
+  return (dispatch, getState) => {
+    dispatch(fetchUserRequest())
+    const token = getState().user.token
+
+    axios({
+      type: 'get',
+      headers: { 'X-Access-Token': token },
+      url: 'https://gym-up-server.herokuapp.com/api/v1/auth/me'
+    })
+
+
+      .then(response => { dispatch(fetchUserSuccess(response.data)) })
+      .catch(error => dispatch(fetchUserFailure(error)))
+  }
+}
+const fetchUserRequest = () => ({
+  type: FETCH_USER_REQUEST,
+  requesting: true
+})
+const fetchUserSuccess = fetchedUser => ({
+  type: FETCH_USER_SUCCESS,
+  requesting: false,
+  payload: fetchedUser
+})
+const fetchUserFailure = error => ({
+  type: FETCH_USER_FAILURE,
+  requesting: false,
+  error
+})
 // DELETE USER
 export function deleteUser() {
   return (dispatch, getState) => {

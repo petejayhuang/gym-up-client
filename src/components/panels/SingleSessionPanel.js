@@ -17,12 +17,13 @@ const Container = styled.div`
   width: 300px;
   border-radius: 8px;
   font-weight: 700; 
+  margin: 0 auto;
 `
 
 const SessionPanel = (props) => {
   return (
     <Container>
-        Session "{props.session.name}" started at {props.session.startTime} (update)
+      Session "{props.session.name}" started at {props.session.startTime} (update)
     </Container>
   )
 }

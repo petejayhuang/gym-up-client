@@ -1,5 +1,9 @@
 // Import Libraries
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
+// Actions
+import { logOut } from '../../actions';
 
 // Import Components
 import { Link } from 'react-router-dom';
@@ -62,6 +66,15 @@ const PrimaryNavLink = styled(Link) `
 
 // Component
 class LoggedInNavbar extends Component {
+  constructor(props) {
+    super(props)
+    this.handleLogout = this.handleLogout.bind(this)
+  }
+
+  handleLogout() {
+    this.props.logOut();
+  }
+
   render() {
     return (
       <Nav>
@@ -71,13 +84,12 @@ class LoggedInNavbar extends Component {
             <NavLink to="/create">Create Session</NavLink>
             <NavLink to="/dashboard">Dashboard</NavLink>
             <NavLink to="/profile">Profile</NavLink>
-            <NavLink to="/logout">Log out</NavLink>
+            <NavLink onClick={this.handleLogout} to="/logout">Log out</NavLink>
           </NavLinks>
-
         </Links >
       </Nav >
     )
   }
 }
 
-export default LoggedInNavbar;
+export default connect(null, { logOut })(LoggedInNavbar)

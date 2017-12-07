@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {
+  fetchUser,
   updateUser,
   deleteUser
 } from '../../actions/userActions'
@@ -46,6 +47,9 @@ class Profile extends Component {
     this.handleDiscardChangesClick = this.handleDiscardChangesClick.bind(this)
   }
 
+  componentDidMount() {
+    this.props.fetchUser();
+  }
   handleUpdateClick() {
     this.setState({
       showUpdateForm: true,
@@ -86,10 +90,11 @@ class Profile extends Component {
       <Page>
         <div>
           <PageHeading>Your User Profile</PageHeading>
-          <div>{this.props.user.userId}</div>
+          <div>{this.props.user.DOB}</div>
+          <div>{this.props.user.createdAt}</div>
+          <div>{this.props.user.email}</div>
           <div>{this.props.user.firstName}</div>
           <div>{this.props.user.lastName}</div>
-          <div>{this.props.user.email}</div>
           {this.state.showUpdateForm ? <UpdateForm /> : ""}
         </div>
         <div>
@@ -123,4 +128,4 @@ function mapStateToProps(state) {
     user: state.user
   }
 }
-export default connect(mapStateToProps, { deleteUser, updateUser })(Profile)
+export default connect(mapStateToProps, { fetchUser, deleteUser, updateUser })(Profile)
