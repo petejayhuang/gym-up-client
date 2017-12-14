@@ -1,3 +1,5 @@
+import { FETCH_SESSIONS_SUCCESS } from "../actions/actionTypes";
+
 const initialState = [
   {
     sessionMasterId: 1,
@@ -19,10 +21,15 @@ const initialState = [
     name: "Session 4",
     startTime: "DD-MM-YYYY HH:MM"
   }
-]
+];
 
 const sessions = (state = initialState, action) => {
-  return state;
-}
+  switch (action.type) {
+    case FETCH_SESSIONS_SUCCESS:
+      return Object.assign({}, state, action.payload);
+    default:
+      return state;
+  }
+};
 
 export default sessions;

@@ -1,42 +1,42 @@
-import React from 'react'
-import Button from '../../components/buttons'
-import styled from 'styled-components'
+import React, { Component } from "react";
+import { Scatter } from "react-chartjs-2";
 
-const Container = styled.div`
-  margin-top: 20px;
-  margin-bottom: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`
+const data = {
+  labels: ["Scatter"],
+  datasets: [
+    {
+      label: "My First dataset",
+      fill: false,
+      backgroundColor: "rgba(75,192,192,0.4)",
+      pointBorderColor: "rgba(75,192,192,1)",
+      pointBackgroundColor: "#fff",
+      pointBorderWidth: 1,
+      pointHoverRadius: 5,
+      pointHoverBackgroundColor: "rgba(75,192,192,1)",
+      pointHoverBorderColor: "rgba(220,220,220,1)",
+      pointHoverBorderWidth: 2,
+      pointRadius: 1,
+      pointHitRadius: 10,
+      data: [
+        { x: 65, y: 75 },
+        { x: 59, y: 49 },
+        { x: 80, y: 90 },
+        { x: 81, y: 29 },
+        { x: 56, y: 36 },
+        { x: 55, y: 25 },
+        { x: 40, y: 18 }
+      ]
+    }
+  ]
+};
 
-const Buttons = () => {
-  return (
-    <div>
-      <Container>
-        <Button className="filled warning" > FILLED</Button>
-        <Button className="outline" > OUTLINE</Button>
-        <Button> NORMAL</Button >
-
-        <Button className="small filled" > FILLED</Button>
-        <Button className="small outline" > OUTLINE</Button>
-        <Button className="small"> NORMAL</Button >
-
-        <Button primary className="small filled primary"> FILLED</Button>
-        <Button primary className="small outline primary"> OUTLINE</Button>
-        <Button primary className="small primary"> NORMAL</Button >
-
-        <Button warning className="small filled warning"> FILLED</Button>
-        <Button warning className="small outline warning"> OUTLINE</Button>
-        <Button warning className="small warning"> NORMAL</Button >
-
-        <Button danger className="small filled danger" > FILLED</Button>
-        <Button danger className="small outline danger"> OUTLINE</Button>
-        <Button danger className="small danger"> NORMAL</Button >
-      </Container >
-    </div>
-  )
+export default class ScatterChart extends Component {
+  render() {
+    return (
+      <div>
+        <h2>Scatter Example</h2>
+        <Scatter data={data} />
+      </div>
+    );
+  }
 }
-
-export default Buttons
