@@ -12,7 +12,7 @@ import {
   UPDATE_USER_REQUEST,
   UPDATE_USER_SUCCESS,
   UPDATE_USER_FAILURE
-} from "./actionTypes";
+} from "./types";
 import { API_ROOT_URL } from "../variables";
 
 // SEND REGISTER FORM

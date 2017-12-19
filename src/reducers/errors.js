@@ -5,4 +5,7 @@ const errors = (state = {}, action) => {
   if (action.type === "CLEAR_ERRORS") {
     return {};
   }
+  return state;
 };
+
+export default errors;

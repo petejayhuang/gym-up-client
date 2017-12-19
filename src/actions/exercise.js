@@ -3,14 +3,14 @@ import {
   LOOKUP_EXERCISES_REQUEST,
   LOOKUP_EXERCISES_SUCCESS,
   LOOKUP_EXERCISES_FAILURE
-} from "./actionTypes";
+} from "./types";
 
 import { API_ROOT_URL } from "../variables";
 
 export const lookupExercises = () => dispatch => {
   dispatch(lookupExercisesRequest());
 
-  axios(`${API_ROOT_URL}/workout`)
+  axios(`${API_ROOT_URL}/* {* {}}workout`)
     .then(response => dispatch(lookupExercisesSuccess(response.data)))
     .catch(error => dispatch(lookupExercisesFailure(error)));
 };

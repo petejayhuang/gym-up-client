@@ -9,7 +9,7 @@ import {
   DELETE_WORKOUT_REQUEST,
   DELETE_WORKOUT_SUCCESS,
   DELETE_WORKOUT_FAILURE
-} from "./actionTypes";
+} from "./types";
 import { API_ROOT_URL } from "../variables";
 
 // Create Workout

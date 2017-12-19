@@ -12,7 +12,7 @@ import {
   DELETE_SESSION_REQUEST,
   DELETE_SESSION_SUCCESS,
   DELETE_SESSION_FAILURE
-} from "./actionTypes";
+} from "./types";
 import { API_ROOT_URL } from "../variables";
 
 // Fetch sessions

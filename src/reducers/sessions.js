@@ -1,4 +1,4 @@
-import { FETCH_SESSIONS_SUCCESS } from "../actions/actionTypes";
+import { FETCH_SESSIONS_SUCCESS } from "../actions/types";
 
 const initialState = [
   {

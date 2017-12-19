@@ -1,4 +1,4 @@
-import { UPDATE_TEXT_INPUT } from "./actionTypes";
+import { UPDATE_TEXT_INPUT } from "./types";
 
 export function textInputChange(textKey, textInput) {
   let tempObj = {};

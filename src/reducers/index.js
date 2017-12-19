@@ -1,11 +1,14 @@
+// Libraries
 import { combineReducers } from "redux";
-import textInput from "./textInputReducer";
-import user from "./userReducer";
-import exercises from "./exerciseReducer";
-import { sessionsReducer } from "./sessionReducer";
-import requesting from "./requestReducer";
-import sessions from "./sessionsReducer";
-import errors from "./errorsReducer";
+
+// Reducers
+import textInput from "./textInput";
+import analytics from "./analytics";
+import user from "./user";
+import exercises from "./exercise";
+import request from "./request";
+import sessions from "./sessions";
+import errors from "./errors";
 
 const rootReducer = (state, action) => {
   if (action.type === "LOGOUT_SUCCESS") {
@@ -15,12 +18,16 @@ const rootReducer = (state, action) => {
 };
 
 const reducers = combineReducers({
+  analytics: combineReducers({
+    sessions: analytics,
+    workouts: analytics
+  }),
   errors,
   registerForm: textInput,
-  currentSession: sessionsReducer,
+  currentSession: sessions,
   user,
   exercises,
-  requesting,
+  request,
   sessions
 });
 
