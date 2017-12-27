@@ -9,6 +9,8 @@ import {
   ANALYTICS_WORKOUTS_FAILURE
 } from "./types";
 
+import { bicepCurlData } from "../sampleData";
+
 import { TEST_API_ROOT_URL } from "../variables";
 
 export const analyticsSessions = () => dispatch => {
@@ -40,75 +42,43 @@ const analyticsSessionsFailure = error => ({
 
 // Workouts
 export const analyticsWorkouts = () => dispatch => {
-  const workoutId = 11;
-  dispatch(analyticsWorkoutsRequest());
-  axios({
-    method: "post",
-    url: `${TEST_API_ROOT_URL}/analytics/workouts`,
-    data: { workoutId, userId: 1 }
-  })
-    .then(response => response.data)
-    .then(response => {
-      const finalObject = {};
+  // const workoutId = 11;
+  // dispatch(analyticsWorkoutsRequest());
+  // axios({
+  //   method: "post",
+  //   url: `${TEST_API_ROOT_URL}/analytics/workouts`,
+  //   data: { workoutId, userId: 1 }
+  // })
+  //   .then(response => response.data)
+  //   .then(response => {
+  //     const finalObject = {};
 
-      const finalArray = response.reduce((acc, item) => {
-        const tempObject = {};
-        tempObject["start"] = item.start.slice(0, 10);
-        tempObject["weight"] = item.sessionDetails[0].weight;
-        tempObject["reps"] = item.sessionDetails[0].reps;
-        tempObject["sets"] = item.sessionDetails[0].sets;
-        return acc.concat(tempObject);
-      }, []);
+  //     const finalArray = response.reduce((acc, item) => {
+  //       const tempObject = {};
+  //       tempObject["start"] = item.start.slice(0, 10);
+  //       tempObject["weight"] = item.sessionDetails[0].weight;
+  //       tempObject["reps"] = item.sessionDetails[0].reps;
+  //       tempObject["sets"] = item.sessionDetails[0].sets;
+  //       return acc.concat(tempObject);
+  //     }, []);
 
-      finalObject[workoutId] = finalArray;
-      return dispatch(analyticsWorkoutsSuccess(finalObject));
-    })
-    .catch(error => dispatch(analyticsWorkoutsFailure(error)));
+  //     finalObject[workoutId] = finalArray;
+  //     return dispatch(analyticsWorkoutsSuccess(finalObject));
+  //   })
+  //   .catch(error => dispatch(analyticsWorkoutsFailure(error)));
+  dispatch(analyticsWorkoutsSuccess(bicepCurlData));
 };
 const analyticsWorkoutsRequest = () => ({
   type: ANALYTICS_WORKOUTS_REQUEST,
   request: { requestingAnalyticsSessions: true }
 });
-const analyticsWorkoutsSuccess = payload => ({
+const analyticsWorkoutsSuccess = bicepCurlData => ({
   type: ANALYTICS_WORKOUTS_SUCCESS,
   request: { requestingAnalyticsWorkouts: false },
-  payload
+  payload: bicepCurlData
 });
 const analyticsWorkoutsFailure = error => ({
   type: ANALYTICS_WORKOUTS_FAILURE,
   request: { requestingAnalyticsWorkouts: false },
   error
 });
-
-// appData = {
-//   workoutsAnalytics: {
-//     31: [
-//       {
-//         date: "YYYY-MM-DD",
-//         weights: 12,
-//         reps: 12,
-//         sets: 3
-//       },
-//       {
-//         date: "YYYY-MM-DD",
-//         weights: 12,
-//         reps: 12,
-//         sets: 3
-//       }
-//     ],
-//     341: [
-//       {
-//         date: "YYYY-MM-DD",
-//         weights: 122,
-//         reps: 122,
-//         sets: 1
-//       },
-//       {
-//         date: "YYYY-MM-DD",
-//         weights: 12,
-//         reps: 12,
-//         sets: 3
-//       }
-//     ]
-//   }
-// };

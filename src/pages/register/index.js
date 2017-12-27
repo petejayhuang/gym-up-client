@@ -20,6 +20,11 @@ const Form = styled.div`
   justify-content: center;
   align-items: center;
 `
+const Inputs = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
 const Input = styled.input`
   height: 40px;
   margin-top: 10px;
@@ -30,7 +35,9 @@ const Input = styled.input`
   padding-left: 10px;
   font-size: 18px;
 `
-
+const ErrorMessage = styled.div`
+  color: ${appStyles.colors.warning}
+`
 class AuthRegister extends Component {
   constructor(props) {
     super(props)
@@ -66,19 +73,11 @@ class AuthRegister extends Component {
   doPasswordsMatch() {
     let string = '';
     (this.state.password !== "" && this.state.password === this.state.passwordMatch)
-      ? string = "Passwords match"
+      ? string = ""
       : string = "Passwords do not match. Please try again."
 
-    return string;
+    return <ErrorMessage>{string}</ErrorMessage>;
   }
-
-  // addUserToLocalStorage() {
-  //   const user = this.props.auth;
-  //   console.log(user)
-  //   // localStorage.setItem('user', JSON.stringify(user));
-  //   // const retrievedUser = localStorage.getItem('user');
-  //   // console.log('retrievedUser: ', JSON.parse(retrievedUser));
-  // }
 
   componentWillReceiveProps(nextProps) {
     console.log("nextProps", nextProps)
@@ -99,7 +98,7 @@ class AuthRegister extends Component {
           <PageHeading>Authenticated Registration</PageHeading>
         </div>
         <Form>
-          <div>
+          <Inputs>
             <Input onChange={(e) => this.handleInputChange("firstName", e)} placeholder="First Name" />
             <Input onChange={(e) => this.handleInputChange("lastName", e)} placeholder="Last Name" />
             <Input onChange={(e) => this.handleInputChange("dateOfBirth", e)} placeholder="Date of Birth" />
@@ -110,7 +109,6 @@ class AuthRegister extends Component {
             {this.doPasswordsMatch()}
 
             <Button
-
               primary
               className="filled"
               onClick={this.handleClick}>
@@ -118,7 +116,7 @@ class AuthRegister extends Component {
               </Button>
 
             {this.props.user.auth && <Redirect to="/profile" />}
-          </div>
+          </Inputs>
         </Form>
         <div>
           <a href="https://gym-up-server.herokuapp.com/api/v1/oauth/google"><Button warning>Register in with google</Button></a>

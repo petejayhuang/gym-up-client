@@ -43,6 +43,7 @@ const Button = styled.button`
   padding-bottom: 10px;
   background: white;
   border: 1px solid white;
+  border-radius: 5px;
   color: ${props => color(props)};
   font-weight: 700;
   font-size: 15px;
