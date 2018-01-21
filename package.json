@@ -6,7 +6,8 @@
   "scripts": {
     "build": "npm install",
     "dev": "webpack-dev-server --open",
-    "prod": "rimraf dist && webpack"
+    "prod": "rimraf dist && webpack",
+    "start": "node ./src/index.js"
   },
   "repository": {
     "type": "git",

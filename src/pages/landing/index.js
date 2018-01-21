@@ -1,35 +1,42 @@
-import React, { Component } from 'react'
-import styled from 'styled-components'
-import Button from '../../components/buttons'
+import React, { Component } from "react";
+import styled from "styled-components";
+import Button from "../../components/buttons";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
-  width: 400px;
-  margin: 30px auto;
+  height: 95vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   font-weight: 600;
-  font-size: 30px;
   text-align: center;
-`
-
+  background: url("https://static.pexels.com/photos/669584/pexels-photo-669584.jpeg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+`;
+const Text = styled.div`
+  max-width: 500px;
+  color: white;
+  font-size: 40px;
+  padding: 20px;
+`;
 export default class Home extends Component {
   render() {
     return (
       <Container>
-        Use GymApp to reach your wildest goals.
-        Start a session.
-        Add workouts to your session.
-        Get fit.
-        <Button>Test</Button>
-        <Button warning>Test</Button>
-        <Button>Test</Button>
-        <Button>Test</Button>
-        <Button className="outline">Test</Button>
-        <Button className="filled">Test</Button>
-        <Button className="filled">Test</Button>
-        <Button className="filled small">Test</Button>
-        <Button warning className="filled small">Test</Button>
-        <Button danger className="filled small">Test</Button>
-
+        <Text>
+          Use GymApp to reach your goals. Start a session. Add workouts to your
+          session. Get analytics. Get fit.
+        </Text>
+        <div>
+          <Link to="/register">
+            <Button primary> Get Started</Button>
+          </Link>
+        </div>
       </Container>
-    )
+    );
   }
 }

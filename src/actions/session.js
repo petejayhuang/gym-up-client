@@ -16,7 +16,7 @@ import {
 import { API_ROOT_URL } from "../variables";
 
 // Fetch sessions
-export const fetchSessions = () => (dispatch, getState) => {
+export const fetchSessions = fakeSession => (dispatch, getState) => {
   dispatch(fetchSessionsRequest());
 
   axios(API_ROOT_URL)
@@ -40,19 +40,18 @@ const fetchSessionsFailure = error => ({
   error: { createSession: error }
 });
 
-// Create Session
+//////////////////////////////////////////////////////
+//                    CREATE SESSION                //
+//////////////////////////////////////////////////////
 export const createSession = currentSession => dispatch => {
   dispatch(createSessionRequest());
-
-  // axios({
-  //   method: 'POST',
-  //   url: 'https://gym-up-server.herokuapp.com/api/v1/session/sessionmaster',
-  //   data: JSON.stringify(currentSession)
-  // })
-  //   .then((response) => dispatch(createSessionSuccess(response.data)))
-  //   .catch((error) => dispatch(createSessionFailure(error)))
-
-  dispatch(createSessionSuccess(newFakeSession));
+  return axios({
+    method: "POST",
+    url: "https://gym-up-server.herokuapp.com/api/v1/session/sessionmaster",
+    data: JSON.stringify(currentSession)
+  })
+    .then(response => dispatch(createSessionSuccess(response.data)))
+    .catch(error => dispatch(createSessionFailure(error)));
 };
 
 const newFakeSession = {

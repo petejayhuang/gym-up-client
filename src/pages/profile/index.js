@@ -42,10 +42,6 @@ class Profile extends Component {
     this.handleSaveChangesClick = this.handleSaveChangesClick.bind(this);
     this.handleDiscardChangesClick = this.handleDiscardChangesClick.bind(this);
   }
-
-  componentDidMount() {
-    this.props.fetchUser();
-  }
   handleUpdateClick() {
     this.setState({
       showUpdateForm: true,
@@ -86,9 +82,8 @@ class Profile extends Component {
       <Page>
         <div>
           <PageHeading>Your User Profile</PageHeading>
-          <div>{this.props.user.DOB}</div>
-          <div>{this.props.user.createdAt}</div>
           <div>{this.props.user.email}</div>
+          <div>{this.props.user.username}</div>
           <div>{this.props.user.firstName}</div>
           <div>{this.props.user.lastName}</div>
           {this.state.showUpdateForm ? <UpdateForm /> : ""}

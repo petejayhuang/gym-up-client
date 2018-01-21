@@ -1,20 +1,20 @@
 // Libraries & Methods
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { deleteSession } from '../../actions'
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { fetchSessions, deleteSession } from "../../actions";
 
 // Components
-import UpdateSession from '../../components/forms/UpdateSession'
+import UpdateSession from "../../components/forms/UpdateSession";
 
 // Styles
-import styled from 'styled-components'
-import appStyles from '../../assets/css/appStyles'
+import styled from "styled-components";
+import appStyles from "../../assets/css/appStyles";
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-`
+`;
 const SessionCard = styled.div`
   width: 500px;
   height: 100px;
@@ -29,12 +29,12 @@ const SessionCard = styled.div`
     padding: 0px;
   }
   box-shadow: 2px 2px 5px ${appStyles.colors.grey};
-`
+`;
 
 const Buttons = styled.div`
   display: flex;
   justify-content: space-between;
-`
+`;
 const Button = styled.button`
   width: 45%;
   padding-top: 3px;
@@ -47,36 +47,51 @@ const Button = styled.button`
     background-color: ${appStyles.colors.warning};
     color: white;
   }
-`
+`;
 
 class Sessions extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       updateSessionId: null
-    }
-    this.handleUpdateClick = this.handleUpdateClick.bind(this)
-    this.handleDeleteClick = this.handleDeleteClick.bind(this)
-    this.findSessionAndRenderUpdateForm = this.findSessionAndRenderUpdateForm.bind(this)
-    this.hideUpdateSessionForm = this.hideUpdateSessionForm.bind(this)
+    };
+    this.handleUpdateClick = this.handleUpdateClick.bind(this);
+    this.handleDeleteClick = this.handleDeleteClick.bind(this);
+    this.findSessionAndRenderUpdateForm = this.findSessionAndRenderUpdateForm.bind(
+      this
+    );
+    this.hideUpdateSessionForm = this.hideUpdateSessionForm.bind(this);
+  }
+
+  fetchSessions() {
+    this.props.fetchSessions();
   }
 
   handleUpdateClick(id) {
-    this.setState({ updateSessionId: id })
+    this.setState({ updateSessionId: id });
   }
   handleDeleteClick(id) {
-    console.log("handleDeleteClick in pages/Sessions/index.js", id)
+    console.log("handleDeleteClick in pages/Sessions/index.js", id);
     // this.props.deleteSession(id)
   }
 
   hideUpdateSessionForm() {
-    this.setState({ updateSessionId: null })
+    this.setState({ updateSessionId: null });
   }
 
   findSessionAndRenderUpdateForm(id) {
-    if (id === null) { return "" }
-    const session = this.props.sessions.find(session => session.sessionMasterId === id)
-    return <UpdateSession hideUpdateSessionForm={this.hideUpdateSessionForm} session={session} />
+    if (id === null) {
+      return "";
+    }
+    const session = this.props.sessions.find(
+      session => session.sessionMasterId === id
+    );
+    return (
+      <UpdateSession
+        hideUpdateSessionForm={this.hideUpdateSessionForm}
+        session={session}
+      />
+    );
   }
 
   render() {
@@ -89,22 +104,32 @@ class Sessions extends Component {
               <p>Session Name: {session.name}</p>
               <p>Start Time: {session.startTime}</p>
               <Buttons>
-                <Button onClick={() => this.handleUpdateClick(session.sessionMasterId)}>(update)</Button>
-                <Button onClick={() => this.handleDeleteClick(session.sessionMasterId)}>(delete)</Button>
+                <Button
+                  onClick={() =>
+                    this.handleUpdateClick(session.sessionMasterId)
+                  }
+                >
+                  (update)
+                </Button>
+                <Button
+                  onClick={() =>
+                    this.handleDeleteClick(session.sessionMasterId)
+                  }
+                >
+                  (delete)
+                </Button>
               </Buttons>
             </SessionCard>
-          )
+          );
         })}
         {this.findSessionAndRenderUpdateForm(this.state.updateSessionId)}
       </Container>
-    )
+    );
   }
 }
 
 const mapStateToProps = state => ({
   sessions: state.sessions
-})
+});
 
-
-
-export default connect(mapStateToProps, null)(Sessions)
+export default connect(mapStateToProps, null)(Sessions);

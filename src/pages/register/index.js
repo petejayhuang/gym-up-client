@@ -1,30 +1,30 @@
-// This is authenticated sign up 
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { createUser } from '../../actions'
-import Button from '../../components/buttons'
-import { Redirect } from 'react-router-dom'
+// This is authenticated sign up
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { createUser } from "../../actions";
+import Button from "../../components/buttons";
+import { Redirect } from "react-router-dom";
 
-import styled from 'styled-components'
-import appStyles from '../../assets/css/appStyles'
+import styled from "styled-components";
+import appStyles from "../../assets/css/appStyles";
 
 const PageHeading = styled.h1`
   font-weight: 600;
   color: ${appStyles.colors.primary};
   font-size: 40px;
   text-align: center;
-`
+`;
 const Form = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`
+`;
 const Inputs = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-`
+`;
 const Input = styled.input`
   height: 40px;
   margin-top: 10px;
@@ -34,100 +34,87 @@ const Input = styled.input`
   width: 300px;
   padding-left: 10px;
   font-size: 18px;
-`
-const ErrorMessage = styled.div`
-  color: ${appStyles.colors.warning}
-`
+`;
 class AuthRegister extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       firstName: "",
       lastName: "",
-      dateOfBirth: "",
-      gender: "",
+      username: "",
       email: "",
-      password: "",
-      passwordMatch: ""
-    }
-    this.handleClick = this.handleClick.bind(this)
-    this.handleInputChange = this.handleInputChange.bind(this)
-    this.doPasswordsMatch = this.doPasswordsMatch.bind(this)
+      password: ""
+    };
+    this.handleClick = this.handleClick.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   handleClick() {
-    if (this.state.password !== "" && this.state.password === this.state.passwordMatch) {
-      const body = this.state;
-      delete body.passwordMatch
-      console.log("body before it is sent", body)
-      this.props.createUser(body)
-    }
+    console.log("register handle click");
+    this.props.createUser(this.state);
   }
 
   handleInputChange(input, e) {
-    let tempObject = {}
-    tempObject[input] = e.target.value
-    this.setState(tempObject)
-  }
-
-  doPasswordsMatch() {
-    let string = '';
-    (this.state.password !== "" && this.state.password === this.state.passwordMatch)
-      ? string = ""
-      : string = "Passwords do not match. Please try again."
-
-    return <ErrorMessage>{string}</ErrorMessage>;
+    let tempObject = {};
+    tempObject[input] = e.target.value;
+    this.setState(tempObject);
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log("nextProps", nextProps)
-    const { token } = nextProps.user
-    
+    const { token } = nextProps.user;
     if (token) {
-      localStorage.setItem('token', token)
+      localStorage.setItem("token", token);
     }
-    const retrievedToken = localStorage.getItem('token');
-    console.log(retrievedToken)
+    const retrievedToken = localStorage.getItem("token");
   }
-
 
   render() {
     return (
       <div>
         <div>
-          <PageHeading>Authenticated Registration</PageHeading>
+          <PageHeading>Register</PageHeading>
         </div>
         <Form>
           <Inputs>
-            <Input onChange={(e) => this.handleInputChange("firstName", e)} placeholder="First Name" />
-            <Input onChange={(e) => this.handleInputChange("lastName", e)} placeholder="Last Name" />
-            <Input onChange={(e) => this.handleInputChange("dateOfBirth", e)} placeholder="Date of Birth" />
-            <Input onChange={(e) => this.handleInputChange("gender", e)} placeholder="Gender" />
-            <Input onChange={(e) => this.handleInputChange("email", e)} placeholder="Email" />
-            <Input onChange={(e) => this.handleInputChange("password", e)} placeholder="Password" />
-            <Input onChange={(e) => this.handleInputChange("passwordMatch", e)} placeholder="Re-type password" />
-            {this.doPasswordsMatch()}
+            <Input
+              onChange={e => this.handleInputChange("firstName", e)}
+              placeholder="First Name"
+            />
+            <Input
+              onChange={e => this.handleInputChange("lastName", e)}
+              placeholder="Last Name"
+            />
+            <Input
+              onChange={e => this.handleInputChange("username", e)}
+              placeholder="Username"
+            />
+            <Input
+              onChange={e => this.handleInputChange("email", e)}
+              placeholder="Email"
+            />
+            <Input
+              onChange={e => this.handleInputChange("password", e)}
+              placeholder="Password"
+            />
 
-            <Button
-              primary
-              className="filled"
-              onClick={this.handleClick}>
-              REGISTER
-              </Button>
-
-            {this.props.user.auth && <Redirect to="/profile" />}
+            <Button primary className="filled" onClick={this.handleClick}>
+              CREATE ACCOUNT
+            </Button>
           </Inputs>
+          <div>
+            <a href="https://gym-up-server.herokuapp.com/api/v1/oauth/google">
+              <Button>REGISTER WITH GOOGLE</Button>
+            </a>
+          </div>
         </Form>
-        <div>
-          <a href="https://gym-up-server.herokuapp.com/api/v1/oauth/google"><Button warning>Register in with google</Button></a>
-        </div>
+        {this.props.user.loggedIn && <Redirect to="/profile" />}
       </div>
-    )
+    );
   }
 }
 
 const mapStateToProps = state => ({
   user: state.user
-})
+});
 
-export default connect(mapStateToProps, { createUser })(AuthRegister)
+export default connect(mapStateToProps, { createUser })(AuthRegister);
