@@ -19,7 +19,8 @@ import { API_ROOT_URL } from "../variables";
 export const fetchSessions = fakeSession => (dispatch, getState) => {
   dispatch(fetchSessionsRequest());
 
-  axios(API_ROOT_URL)
+  axios
+    .get(`${API_ROOT_URL}/sessions`)
     .then(response => response.json())
     .then(response => dispatch(fetchSessionsSuccess(response)))
     .catch(error => dispatch(fetchSessionsFailure(error)));
@@ -27,17 +28,17 @@ export const fetchSessions = fakeSession => (dispatch, getState) => {
 
 const fetchSessionsRequest = () => ({
   type: FETCH_SESSIONS_REQUEST,
-  requesting: { requestingFetchSessions: true }
+  requesting: true
 });
 const fetchSessionsSuccess = allSessions => ({
   type: FETCH_SESSIONS_SUCCESS,
-  requesting: { requestingFetchSessions: false },
+  requesting: false,
   payload: allSessions
 });
 const fetchSessionsFailure = error => ({
-  type: CREATE_SESSION_FAILURE,
-  requesting: { requestingFetchSessions: false },
-  error: { createSession: error }
+  type: FETCH_SESSIONS_FAILURE,
+  requesting: false,
+  error
 });
 
 //////////////////////////////////////////////////////

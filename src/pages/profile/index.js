@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchUser, updateUser, deleteUser } from "../../actions";
+import {
+  fetchUser,
+  updateUser,
+  deleteUser,
+  fetchSessions
+} from "../../actions";
 
 import UpdateForm from "./UpdateForm";
 import Button from "../../components/buttons";
@@ -41,6 +46,9 @@ class Profile extends Component {
     this.handleDeleteClick = this.handleDeleteClick.bind(this);
     this.handleSaveChangesClick = this.handleSaveChangesClick.bind(this);
     this.handleDiscardChangesClick = this.handleDiscardChangesClick.bind(this);
+  }
+  componentWillMount() {
+    this.props.fetchSessions();
   }
   handleUpdateClick() {
     this.setState({
@@ -124,6 +132,9 @@ function mapStateToProps(state) {
     user: state.user
   };
 }
-export default connect(mapStateToProps, { fetchUser, deleteUser, updateUser })(
-  Profile
-);
+export default connect(mapStateToProps, {
+  fetchUser,
+  deleteUser,
+  updateUser,
+  fetchSessions
+})(Profile);

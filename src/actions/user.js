@@ -14,7 +14,8 @@ import {
   DELETE_USER_FAILURE,
   UPDATE_USER_REQUEST,
   UPDATE_USER_SUCCESS,
-  UPDATE_USER_FAILURE
+  UPDATE_USER_FAILURE,
+  LOGOUT_SUCCESS
 } from "./types";
 import { API_ROOT_URL } from "../variables";
 
