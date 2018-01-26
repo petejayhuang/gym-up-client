@@ -107,12 +107,15 @@ const fakeUserLogin = {
 };
 export const loginUser = loginForm => (dispatch, getState) => {
   dispatch(loginUserRequest());
+
   axios({
     method: "POST",
-    url: `${API_ROOT_URL}/auth/login`,
+    url: `http://62a51307.ngrok.io/api/v1/auth/login`,
+    withCredentials: true,
     data: loginForm
   })
     .then(response => {
+      console.log(response);
       dispatch(loginUserSuccess(response.data.user));
       // dispatch(loginUserSuccess(fakeUserLogin));
     })
@@ -125,10 +128,10 @@ const loginUserRequest = () => ({
   type: LOGIN_USER_REQUEST,
   requesting: true
 });
-const loginUserSuccess = loginForm => ({
+const loginUserSuccess = userDetails => ({
   type: LOGIN_USER_SUCCESS,
   requesting: false,
-  payload: loginForm
+  payload: userDetails
 });
 const loginUserFailure = error => ({
   type: LOGIN_USER_FAILURE,

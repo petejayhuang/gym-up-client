@@ -39,7 +39,7 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: "",
+      email: "",
       password: ""
     };
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -66,8 +66,8 @@ class Login extends Component {
           <Inputs>
             <Input
               type="text"
-              placeholder="Username"
-              onChange={e => this.handleInputChange("username", e)}
+              placeholder="Email"
+              onChange={e => this.handleInputChange("email", e)}
             />
             <Input
               type="text"

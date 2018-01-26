@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Button from "../../components/buttons";
 import { Link } from "react-router-dom";
 
+// background: url("https://static.pexels.com/photos/669584/pexels-photo-669584.jpeg");
 const Container = styled.div`
   height: 95vh;
   width: 100vw;
@@ -12,7 +13,6 @@ const Container = styled.div`
   align-items: center;
   font-weight: 600;
   text-align: center;
-  background: url("https://static.pexels.com/photos/669584/pexels-photo-669584.jpeg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;

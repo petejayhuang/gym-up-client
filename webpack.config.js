@@ -1,16 +1,16 @@
 // NPM PACKAGES
-var webpack             = require('webpack');
-var path                = require('path');
+var webpack = require("webpack");
+var path = require("path");
 
 // PLUGINS
-var HtmlWebpackPlugin   = require('html-webpack-plugin');
-var ExtractTextPlugin   = require('extract-text-webpack-plugin');
+var HtmlWebpackPlugin = require("html-webpack-plugin");
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
-  entry: './src/index.js',
+  entry: "./src/index.js",
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js'
+    path: path.resolve(__dirname, "dist"),
+    filename: "bundle.js"
   },
   module: {
     rules: [
@@ -18,31 +18,31 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
+          loader: "babel-loader",
           options: {
-            presets: ['react']
+            presets: ["es2015", "react"]
           }
         }
       },
       {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: 'css-loader'
+          fallback: "style-loader",
+          use: "css-loader"
         })
       }
     ]
   },
   devServer: {
-    contentBase: './dist',
+    contentBase: "./dist",
     historyApiFallback: true
   },
   devtool: "cheap-eval-source-map",
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'template-index.html',
-      filename: 'index.html'    
+      template: "template-index.html",
+      filename: "index.html"
     }),
-    new ExtractTextPlugin('styles.css')
+    new ExtractTextPlugin("styles.css")
   ]
-}
+};

@@ -19,10 +19,15 @@ import { API_ROOT_URL } from "../variables";
 export const fetchSessions = fakeSession => (dispatch, getState) => {
   dispatch(fetchSessionsRequest());
 
-  axios
-    .get(`${API_ROOT_URL}/sessions`)
-    .then(response => response.json())
-    .then(response => dispatch(fetchSessionsSuccess(response)))
+  axios({
+    url: `${API_ROOT_URL}/sessions`,
+    method: "GET",
+    withCredentials: true
+  })
+    .then(response => {
+      console.log(response);
+      dispatch(fetchSessionsSuccess(response));
+    })
     .catch(error => dispatch(fetchSessionsFailure(error)));
 };
 

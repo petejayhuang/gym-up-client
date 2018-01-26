@@ -1,22 +1,24 @@
 // IMPORT LIBRARIES
-import React, { Component } from 'react'
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch
-} from 'react-router-dom'
+import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { instanceOf } from "prop-types";
+import { withCookies, Cookies } from "react-cookie";
 
 // ROUTES
-import routes from './routes'
+import routes from "./routes";
 
 // COMPONENTS
-import Navbar from '../components/navbar'
+import Navbar from "../components/navbar";
 
 // STYLES
-import '../assets/css/styles.css';
+import "../assets/css/styles.css";
 
-export default class App extends Component {
+class App extends Component {
+  componentWillMount() {
+    const { cookies } = this.props;
+  }
   render() {
+    console.log("yum cookies!", this.props);
     return (
       <div className="App">
         <Router>
@@ -28,6 +30,8 @@ export default class App extends Component {
           </Switch>
         </Router>
       </div>
-    )
+    );
   }
 }
+
+export default withCookies(App);

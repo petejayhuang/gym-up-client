@@ -41,7 +41,6 @@ class AuthRegister extends Component {
     this.state = {
       firstName: "",
       lastName: "",
-      username: "",
       email: "",
       password: ""
     };
@@ -83,10 +82,6 @@ class AuthRegister extends Component {
             <Input
               onChange={e => this.handleInputChange("lastName", e)}
               placeholder="Last Name"
-            />
-            <Input
-              onChange={e => this.handleInputChange("username", e)}
-              placeholder="Username"
             />
             <Input
               onChange={e => this.handleInputChange("email", e)}

@@ -63,7 +63,7 @@ class Sessions extends Component {
     this.hideUpdateSessionForm = this.hideUpdateSessionForm.bind(this);
   }
 
-  fetchSessions() {
+  componentWillMount() {
     this.props.fetchSessions();
   }
 
@@ -97,6 +97,7 @@ class Sessions extends Component {
   render() {
     return (
       <Container>
+        Your sessions
         {this.props.sessions.map((session, index) => {
           return (
             <SessionCard key={index}>
@@ -132,4 +133,4 @@ const mapStateToProps = state => ({
   sessions: state.sessions
 });
 
-export default connect(mapStateToProps, null)(Sessions);
+export default connect(mapStateToProps, { fetchSessions })(Sessions);

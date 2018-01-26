@@ -84,6 +84,7 @@ class LoggedInNavbar extends Component {
         <Links>
           <NavLinks>
             <NavLink to="/create">Create Session</NavLink>
+            <NavLink to="/sessions">My Sessions</NavLink>
             <NavLink to="/analytics">Analytics</NavLink>
             <NavLink to="/profile">Profile</NavLink>
             <NavLink onClick={this.handleLogout} to="/">
