@@ -11,7 +11,10 @@ import {
   UPDATE_SESSION_FAILURE,
   DELETE_SESSION_REQUEST,
   DELETE_SESSION_SUCCESS,
-  DELETE_SESSION_FAILURE
+  DELETE_SESSION_FAILURE,
+  FINISH_SESSION_REQUEST,
+  FINISH_SESSION_SUCCESS,
+  FINISH_SESSION_FAILURE
 } from "./types";
 import { API_ROOT_URL } from "../variables";
 
@@ -25,8 +28,7 @@ export const fetchSessions = fakeSession => (dispatch, getState) => {
     withCredentials: true
   })
     .then(response => {
-      console.log(response);
-      dispatch(fetchSessionsSuccess(response));
+      dispatch(fetchSessionsSuccess(response.data.sessions));
     })
     .catch(error => dispatch(fetchSessionsFailure(error)));
 };
@@ -49,22 +51,23 @@ const fetchSessionsFailure = error => ({
 //////////////////////////////////////////////////////
 //                    CREATE SESSION                //
 //////////////////////////////////////////////////////
-export const createSession = currentSession => dispatch => {
+export const createSession = currentSession => (dispatch, getState) => {
   dispatch(createSessionRequest());
+
+  const data = Object.assign({}, currentSession);
+  console.log(data);
   return axios({
     method: "POST",
-    url: "https://gym-up-server.herokuapp.com/api/v1/session/sessionmaster",
-    data: JSON.stringify(currentSession)
+    url: `${API_ROOT_URL}/sessions`,
+    withCredentials: true,
+    data
   })
-    .then(response => dispatch(createSessionSuccess(response.data)))
+    .then(response =>
+      dispatch(createSessionSuccess(response.data.sessionMaster))
+    )
     .catch(error => dispatch(createSessionFailure(error)));
 };
 
-const newFakeSession = {
-  startTime: "DD-MM-YYYY",
-  name: "HIITS for life!",
-  sessionMasterId: 12
-};
 const createSessionRequest = () => ({
   type: CREATE_SESSION_REQUEST,
   requesting: true
@@ -103,6 +106,41 @@ const updateSessionSuccess = payload => ({
 });
 const updateSessionFailure = error => ({
   type: UPDATE_SESSION_FAILURE,
+  requesting: false,
+  error
+});
+
+//////////////////////////////////////////////////////
+//                    FINISH SESSION                //
+//////////////////////////////////////////////////////
+export const finishSession = () => (dispatch, getState) => {
+  const { id } = getState().currentSession;
+  dispatch(finishSessionRequest());
+  const data = { finish: "tomorrow" };
+  console.log(data);
+  return axios({
+    method: "PUT",
+    url: `${API_ROOT_URL}/sessions/${id}`,
+    withCredentials: true,
+    data
+  })
+    .then(response =>
+      dispatch(finishSessionSuccess(response.data.sessionMaster))
+    )
+    .catch(error => dispatch(finishSessionFailure(error)));
+};
+
+const finishSessionRequest = () => ({
+  type: FINISH_SESSION_REQUEST,
+  requesting: true
+});
+const finishSessionSuccess = payload => ({
+  type: FINISH_SESSION_SUCCESS,
+  requesting: false,
+  payload
+});
+const finishSessionFailure = error => ({
+  type: FINISH_SESSION_FAILURE,
   requesting: false,
   error
 });

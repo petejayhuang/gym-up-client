@@ -58,9 +58,9 @@ class CreateWorkout extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      workoutId: "",
-      weight: "",
-      reps: ""
+      workoutId: null,
+      reps: "",
+      weight: ""
     };
 
     this.handleDropdownChange = this.handleDropdownChange.bind(this);
@@ -74,7 +74,7 @@ class CreateWorkout extends Component {
   }
 
   handleDropdownChange(event) {
-    console.log(event.target.value);
+    console.log("dropdown value", event.target.value);
     this.setState({
       workoutId: parseInt(event.target.value)
     });
@@ -87,11 +87,12 @@ class CreateWorkout extends Component {
   }
 
   renderExercisesDropdown() {
+    console.log(this.state);
     return (
       <Dropdown onChange={this.handleDropdownChange}>
         {this.props.exercises.map((exercise, index) => {
           return (
-            <option value={exercise.workoutId} key={index}>
+            <option value={exercise.id} key={index}>
               {" "}
               {exercise.name}
             </option>
@@ -105,8 +106,8 @@ class CreateWorkout extends Component {
     this.props.createWorkout(this.state);
     this.setState({
       workoutId: "",
-      weight: "",
-      reps: ""
+      reps: "",
+      weight: ""
     });
   }
 

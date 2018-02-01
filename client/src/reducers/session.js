@@ -1,14 +1,18 @@
 import {
   CREATE_SESSION_SUCCESS,
   UPDATE_SESSION_SUCCESS,
+  FINISH_SESSION_SUCCESS,
   DELETE_SESSION_SUCCESS,
   CREATE_WORKOUT_SUCCESS
 } from "../actions/types";
-import { workoutReducer } from "./workout";
+import workoutsReducer from "./workouts";
 
 const sessionDefaultState = {
   name: null,
-  startTime: null,
+  start: null,
+  intensity: "",
+  finish: "",
+  comments: "",
   workouts: []
 };
 
@@ -18,11 +22,13 @@ const session = (state = sessionDefaultState, action) => {
       return Object.assign({}, state, action.payload);
     case UPDATE_SESSION_SUCCESS:
       return Object.assign({}, state, action.payload);
+    case FINISH_SESSION_SUCCESS:
+      return {};
     case DELETE_SESSION_SUCCESS:
       return state;
     case CREATE_WORKOUT_SUCCESS:
       return Object.assign({}, state, {
-        workouts: workoutReducer(state.workouts, action)
+        workouts: workoutsReducer(state.workouts, action)
       });
     default:
       return state;

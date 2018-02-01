@@ -1,7 +1,7 @@
-import React from 'react'
+import React from "react";
 
-import styled from 'styled-components'
-import appStyles from '../../assets/css/appStyles'
+import styled from "styled-components";
+import appStyles from "../../assets/css/appStyles";
 
 const Container = styled.div`
   background: white;
@@ -15,16 +15,17 @@ const Container = styled.div`
   padding-right: 20px;
   width: 300px;
   border-radius: 8px;
-  font-weight: 700; 
+  font-weight: 700;
   margin: 0 auto;
-`
+`;
 
-const SessionPanel = (props) => {
+const SessionPanel = props => {
   return (
     <Container className="shadow">
-      Session "{props.session.name}" started at {props.session.startTime} (update)
+      Session "{props.session.sessionName}" started at{" "}
+      {props.session.createdAt.substring(0, 10)} (update)
     </Container>
-  )
-}
+  );
+};
 
-export default SessionPanel
+export default SessionPanel;

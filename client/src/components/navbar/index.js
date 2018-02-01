@@ -26,14 +26,12 @@ const LoadingNavbar = styled.div`
 `;
 const BlankLoadingNavbar = styled.div`
   height: 3px;
-  background-color: blue;
 `;
 
 class Navbars extends Component {
   constructor(props) {
     super(props);
   }
-
   render() {
     return (
       <div>

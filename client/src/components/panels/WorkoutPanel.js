@@ -86,10 +86,10 @@ class WorkoutPanel extends Component {
           return (
             <WorkoutCard className="shadow" key={index}>
               <p>
-                <strong>Database ID:</strong> {workout.workoutId}
+                <strong>Session Master ID:</strong> {workout.sessionMasterId}
               </p>
               <p>
-                <strong>Session Detail ID:</strong> {workout.sessionDetailId}
+                <strong>Session Detail ID:</strong> {workout.id}
               </p>
               <p>
                 <strong>Exercise</strong> {workout.workoutOrder}

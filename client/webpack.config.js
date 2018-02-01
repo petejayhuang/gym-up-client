@@ -59,7 +59,7 @@ module.exports = {
     contentBase: "./dist",
     historyApiFallback: true
   },
-  devtool: "cheap-eval-source-map",
+  devtool: "cheap-module-source-map",
   plugins: [
     new HtmlWebpackPlugin({
       template: "template-index.html",

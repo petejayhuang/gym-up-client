@@ -5,7 +5,8 @@ const initialState = [];
 const sessions = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_SESSIONS_SUCCESS:
-      return Object.assign({}, state, action.payload);
+      const tempArray = [];
+      return tempArray.concat(action.payload);
     default:
       return state;
   }

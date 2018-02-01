@@ -110,7 +110,7 @@ export const loginUser = loginForm => (dispatch, getState) => {
 
   axios({
     method: "POST",
-    url: `http://62a51307.ngrok.io/api/v1/auth/login`,
+    url: `${API_ROOT_URL}/auth/login`,
     withCredentials: true,
     data: loginForm
   })

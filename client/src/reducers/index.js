@@ -7,6 +7,7 @@ import analytics from "./analytics";
 import user from "./user";
 import exercises from "./exercise";
 import request from "./request";
+import session from "./session";
 import sessions from "./sessions";
 import errors from "./errors";
 
@@ -24,7 +25,7 @@ const reducers = combineReducers({
   }),
   errors,
   registerForm: textInput,
-  currentSession: sessions,
+  currentSession: session,
   user,
   exercises,
   request,

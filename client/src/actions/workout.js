@@ -14,31 +14,23 @@ import { API_ROOT_URL } from "../variables";
 
 // Create Workout
 export const createWorkout = currentWorkout => (dispatch, getState) => {
-  const { sessionMasterId, workouts } = getState().currentSession;
-  const { exercises } = getState();
-
+  const { id, workouts } = getState().currentSession;
   dispatch(createWorkoutRequest());
 
-  const currentExerciseName = exercises.find(
-    exercise => exercise.workoutId === currentWorkout.workoutId
-  ).name;
+  const data = Object.assign({}, currentWorkout);
+  data["workoutOrder"] = workouts.length + 1;
 
-  const randomId = Math.floor(Math.random() * 10000);
-
-  let fakeData = currentWorkout;
-  fakeData["name"] = currentExerciseName;
-  fakeData["sessionMasterId"] = sessionMasterId;
-  fakeData["order"] = workouts.length + 1;
-  fakeData["sessionDetailId"] = randomId;
-
-  // axios({
-  //   method: 'POST',
-  //   url: 'https://gym-up-server.herokuapp.com/api/v1/session/sessiondetail',
-  //   data
-  // })
-  //   .then(response => dispatch(createWorkoutSuccess(response.data)))
-  //   .catch(error => dispatch(createWorkoutFailure(error)))
-  dispatch(createWorkoutSuccess(fakeData));
+  console.log("workout before it goes out", data);
+  axios({
+    method: "POST",
+    withCredentials: true,
+    url: `${API_ROOT_URL}/sessions/${id}`,
+    data
+  })
+    .then(response =>
+      dispatch(createWorkoutSuccess(response.data.sessionDetail))
+    )
+    .catch(error => dispatch(createWorkoutFailure(error)));
 };
 
 const createWorkoutRequest = () => ({

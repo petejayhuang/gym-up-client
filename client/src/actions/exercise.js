@@ -10,8 +10,8 @@ import { API_ROOT_URL } from "../variables";
 export const lookupExercises = () => dispatch => {
   dispatch(lookupExercisesRequest());
 
-  axios(`${API_ROOT_URL}/* {* {}}workout`)
-    .then(response => dispatch(lookupExercisesSuccess(response.data)))
+  axios(`${API_ROOT_URL}/workouts`)
+    .then(response => dispatch(lookupExercisesSuccess(response.data.workouts)))
     .catch(error => dispatch(lookupExercisesFailure(error)));
 };
 const lookupExercisesRequest = () => {

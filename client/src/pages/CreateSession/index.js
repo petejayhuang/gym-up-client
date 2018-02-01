@@ -1,6 +1,7 @@
 // Libraries & Methods
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { finishSession } from "../../actions";
 
 // Styles
 import styled from "styled-components";
@@ -27,26 +28,32 @@ class CreateSession extends Component {
     this.state = {
       showUpdateSessionForm: false
     };
+    this.handleClick = this.handleClick.bind(this);
   }
 
+  handleClick() {
+    this.props.finishSession();
+  }
   render() {
     return (
       <Container>
-        {this.props.session.sessionMasterId ? "" : <CreateSessionForm />}
+        {!this.props.currentSession.id && <CreateSessionForm />}
 
         {this.state.showUpdateSessionForm && (
           <UpdateSessionForm session={this.props.session} />
         )}
 
-        {this.props.session.sessionMasterId && (
+        {this.props.currentSession.id && (
           <div>
-            <SingleSessionPanel session={this.props.session} />
+            <SingleSessionPanel session={this.props.currentSession} />
             <CreateWorkoutForm />
-            <WorkoutPanel workouts={this.props.session.workouts} />
+            <WorkoutPanel workouts={this.props.currentSession.workouts} />
           </div>
         )}
-        {this.props.session && (
-          <Button className="filled">Finish Session</Button>
+        {this.props.currentSession.id && (
+          <Button className="filled" onClick={this.handleClick}>
+            Finish Session
+          </Button>
         )}
       </Container>
     );
@@ -54,7 +61,7 @@ class CreateSession extends Component {
 }
 
 const mapStateToProps = state => ({
-  session: state.currentSession
+  currentSession: state.currentSession
 });
 
-export default connect(mapStateToProps)(CreateSession);
+export default connect(mapStateToProps, { finishSession })(CreateSession);

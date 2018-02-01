@@ -51,8 +51,8 @@ class CreateWorkout extends Component {
 
   handleInputChange(event) {
     this.setState({
-      name: event.target.value,
-      startTime: moment().format("DD-MM-YYYY HH:MM")
+      sessionName: event.target.value,
+      start: moment().format("DD-MM-YYYY HH:MM")
     });
   }
 
