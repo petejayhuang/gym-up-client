@@ -23,13 +23,13 @@ const reducers = combineReducers({
     sessions: analytics,
     workouts: analytics
   }),
-  errors,
-  registerForm: textInput,
   currentSession: session,
-  user,
+  errors,
   exercises,
+  registerForm: textInput,
   request,
-  sessions
+  sessions,
+  user
 });
 
 export default rootReducer;

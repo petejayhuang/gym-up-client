@@ -71,7 +71,6 @@ class Sessions extends Component {
   }
   handleDeleteClick(id) {
     console.log("handleDeleteClick in pages/Sessions/index.js", id);
-    // this.props.deleteSession(id)
   }
 
   hideUpdateSessionForm() {
@@ -83,7 +82,7 @@ class Sessions extends Component {
       return "";
     }
     const session = this.props.sessions.find(
-      session => session.sessionMasterId === id
+      session => session.id === id
     );
     return (
       <UpdateSession
@@ -100,20 +99,20 @@ class Sessions extends Component {
         {this.props.sessions.map((session, index) => {
           return (
             <SessionCard className="shadow" key={index}>
-              <p>Session Id: {session.sessionMasterId}</p>
-              <p>Session Name: {session.name}</p>
-              <p>Start Time: {session.startTime}</p>
+              <p>Session Id: {session.id}</p>
+              <p>Session Name: {session.sessionName}</p>
+              <p>Start Time: {session.start}</p>
               <Buttons>
                 <Button
                   onClick={() =>
-                    this.handleUpdateClick(session.sessionMasterId)
+                    this.handleUpdateClick(session.id)
                   }
                 >
                   (update)
                 </Button>
                 <Button
                   onClick={() =>
-                    this.handleDeleteClick(session.sessionMasterId)
+                    this.handleDeleteClick(session.id)
                   }
                 >
                   (delete)

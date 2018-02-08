@@ -52,10 +52,8 @@ class WorkoutPanel extends Component {
     console.log("update workout with id:", id);
     this.setState({ updateWorkoutId: id });
   }
-  handleDeleteClick(id) {
-    console.log("delete workout with id:", id);
-    // this isn't working yet
-    // this.props.deleteWorkout(id)
+  handleDeleteClick(sessionMasterId, sessionDetailId) {
+    this.props.deleteWorkout(sessionMasterId, sessionDetailId);
   }
 
   hideUpdateWorkoutForm() {
@@ -67,14 +65,14 @@ class WorkoutPanel extends Component {
       return "";
     }
 
-    const workout = this.props.workouts.find(
-      workout => workout.sessionDetailId === id
+    const workoutToUpdate = this.props.workouts.find(
+      workout => workout.id === id
     );
 
     return (
       <UpdateWorkout
         hideUpdateWorkoutForm={this.hideUpdateWorkoutForm}
-        workout={workout}
+        workout={workoutToUpdate}
       />
     );
   }
@@ -83,40 +81,31 @@ class WorkoutPanel extends Component {
     return (
       <Container>
         {this.props.workouts.map((workout, index) => {
+          console.log(
+            "this is a single workout in workouts",
+            workout.sessionMasterId
+          );
           return (
             <WorkoutCard className="shadow" key={index}>
-              <p>
-                <strong>Session Master ID:</strong> {workout.sessionMasterId}
-              </p>
-              <p>
-                <strong>Session Detail ID:</strong> {workout.id}
-              </p>
-              <p>
-                <strong>Exercise</strong> {workout.workoutOrder}
-              </p>
-              <p>
-                <strong>Name:</strong> {workout.name}
-              </p>
-              <p>
-                <strong>Weight:</strong> {workout.weight}
-              </p>
-              <p>
-                <strong>Repetitions: </strong>
-                {workout.reps}
-              </p>
+              <strong>Session Master ID:</strong> {workout.sessionMasterId}
+              <strong>Session Detail Id:</strong> {workout.id}
+              <strong>Workout Name:</strong> {workout.Workout.name}
+              <strong>Workout Id:</strong> {workout.workoutId}
+              <strong>Workout Order</strong> {workout.workoutOrder}
+              <strong>Weight:</strong> {workout.weight}
+              <strong>Reps: </strong>
+              {workout.reps}
               <Buttons>
                 <Button
                   className="small"
-                  onClick={() =>
-                    this.handleUpdateClick(workout.sessionDetailId)
-                  }
+                  onClick={() => this.handleUpdateClick(workout.id)}
                 >
                   update
                 </Button>
                 <Button
                   className="small"
                   onClick={() =>
-                    this.handleDeleteClick(workout.sessionDetailId)
+                    this.handleDeleteClick(workout.sessionMasterId, workout.id)
                   }
                 >
                   delete

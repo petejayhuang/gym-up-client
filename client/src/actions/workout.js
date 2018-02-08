@@ -50,15 +50,24 @@ const createWorkoutFailure = error => ({
 });
 
 // Update Workout
-export const updateWorkout = (updatedWorkout, workoutId) => dispatch => {
+export const updateWorkout = (
+  updatedWorkout,
+  sessionMasterId,
+  id
+) => dispatch => {
   dispatch(updateWorkoutRequest());
+
+  const data = Object.assign({}, updatedWorkout);
 
   axios({
     method: "PUT",
-    url: `${API_ROOT_URL}/session/sessiondetail${workoutId}`,
+    url: `${API_ROOT_URL}/sessions/${sessionMasterId}/${id}`,
+    withCredentials: true,
     data
   })
-    .then(response => dispatch(updateWorkoutSuccess(response.data)))
+    .then(response =>
+      dispatch(updateWorkoutSuccess(response.data.sessionDetail))
+    )
     .catch(error => dispatch(updateWorkoutFailure(error)));
 };
 const updateWorkoutRequest = () => ({
@@ -76,16 +85,16 @@ const updateWorkoutFailure = error => ({
   error
 });
 
-// Delete Workout
-// TBC - Not in action yet
-export const deleteWorkout = workoutId => dispatch => {
+
+export const deleteWorkout = (sessionMasterId, workoutId) => dispatch => {
   dispatch(deleteWorkoutRequest());
 
   axios({
     method: "DELETE",
-    url: `${API_ROOT_URL}/session/sessiondetail${workoutId}`
+    url: `${API_ROOT_URL}/sessions/${sessionMasterId}/${workoutId}`,
+    withCredentials: true
   })
-    .then(response => dispatch(deleteWorkoutSuccess(response.data)))
+    .then(response => dispatch(deleteWorkoutSuccess(response)))
     .catch(error => dispatch(deleteWorkoutFailure(error)));
 };
 const deleteWorkoutRequest = () => ({

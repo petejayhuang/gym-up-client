@@ -37,6 +37,7 @@ export const createUser = registerForm => (dispatch, getState) => {
   axios({
     method: "POST",
     url: `${API_ROOT_URL}/auth/signup`,
+    withCredentials: true,
     data
   })
     .then(response => {

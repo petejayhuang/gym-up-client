@@ -1,7 +1,6 @@
 import {
-  CREATE_WORKOUT_REQUEST,
   CREATE_WORKOUT_SUCCESS,
-  CREATE_WORKOUT_FAILURE
+  UPDATE_WORKOUT_SUCCESS
 } from "../actions/types";
 
 const workout = (state = [], action) => {
@@ -10,6 +9,10 @@ const workout = (state = [], action) => {
       let newState = [...state];
       newState.push(action.payload);
       return newState;
+    case UPDATE_WORKOUT_SUCCESS:
+    // TODO - find the item in the array, replace with the new one
+      const itemToRemove = state.indexOf();
+      return state;
     default:
       return state;
   }

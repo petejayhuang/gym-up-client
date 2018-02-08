@@ -1,21 +1,21 @@
 // Libraries & Methods
-import React, { Component } from 'react'
-import moment from 'moment'
-import { connect } from 'react-redux'
-import { updateSession, deleteSession } from '../../actions'
+import React, { Component } from "react";
+import moment from "moment";
+import { connect } from "react-redux";
+import { updateSession, deleteSession } from "../../actions";
 
 // Components
-import Button from '../buttons'
+import Button from "../buttons";
 // Styles
-import styled from 'styled-components'
-import appStyles from '../../assets/css/appStyles'
+import styled from "styled-components";
+import appStyles from "../../assets/css/appStyles";
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-`
+`;
 const Input = styled.input`
   height: 40px;
   margin-top: 10px;
@@ -25,61 +25,57 @@ const Input = styled.input`
   width: 300px;
   padding-left: 10px;
   font-size: 18px;
-`
+`;
 
 class UpdateSession extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-      name: null,
-      createdAt: null
-    }
-    this.handleInputChange = this.handleInputChange.bind(this)
-    this.handleUpdateSession = this.handleUpdateSession.bind(this)
+      sessionName: null,
+      start: null
+    };
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleUpdateSession = this.handleUpdateSession.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setState(nextProps.session)
+  componentWillMount() {
+    this.setState(this.props.session);
   }
 
   handleInputChange(inputField, e) {
-    const tempObject = {}
+    const tempObject = {};
     tempObject[inputField] = e.target.value;
-    this.setState(tempObject)
+    this.setState(tempObject);
   }
 
   handleUpdateSession(event) {
-    this.props.updateSession(this.state)
+    this.props.updateSession(this.state, this.props.session.id);
   }
 
   render() {
-    console.log(this.state)
+    console.log(this.state);
     return (
       <Container>
-
         <Input
-          onChange={(e) => this.handleInputChange("name", e)}
-          value={this.state.name}
+          onChange={e => this.handleInputChange("sessionName", e)}
+          value={this.state.sessionName}
           placeholder="Session Name"
         />
 
         <Input
-          onChange={(e) => this.handleInputChange("createdAt", e)}
-          value={this.state.createdAt}
+          onChange={e => this.handleInputChange("start", e)}
+          value={this.state.start}
           placeholder="Session Start Time"
         />
 
-        <Button
-          onClick={this.props.hideUpdateSessionForm}
-        >Discard Changes</Button>
+        <Button onClick={this.props.hideUpdateSessionForm}>
+          Discard Changes
+        </Button>
 
-        <Button
-          onClick={this.handleUpdateSession}
-        >Update Session</Button>
+        <Button onClick={this.handleUpdateSession}>Update Session</Button>
       </Container>
-
-    )
+    );
   }
 }
 
-export default connect(null, { updateSession, deleteSession })(UpdateSession)
+export default connect(null, { updateSession, deleteSession })(UpdateSession);
