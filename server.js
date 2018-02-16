@@ -3,9 +3,7 @@ const path = require("path");
 
 var app = express();
 
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(__dirname + "/client/dist"));
-}
+app.use(express.static(__dirname + "/client/dist"));
 
 app.get("*", (req, res) => {
   console.log("* route hit");
