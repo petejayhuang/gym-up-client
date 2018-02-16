@@ -25,7 +25,6 @@ import { API_ROOT_URL } from "../variables";
 const fakeUser = {
   firstName: "Peter",
   lastName: "Huang",
-  username: "petehuang",
   email: "petejayhuang@asdasd.com",
   password: "13123"
 };
@@ -101,7 +100,6 @@ const fetchUserFailure = error => ({
 const fakeUserLogin = {
   firstName: "Peter",
   lastName: "Huang",
-  username: "petehuang",
   email: "petejayhuang@asdasd.com",
   password: "13123",
   loggedIn: true

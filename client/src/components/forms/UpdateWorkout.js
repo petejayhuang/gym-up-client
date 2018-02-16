@@ -14,6 +14,11 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+
 `;
 const Input = styled.input`
   height: 40px;
@@ -61,7 +66,6 @@ class UpdateWorkout extends Component {
   }
 
   render() {
-    console.log("update workout component state", this.state, this.props);
     return (
       <Container>
         <label>Weight</label>

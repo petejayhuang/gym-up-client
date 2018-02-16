@@ -21,8 +21,6 @@ const Container = styled.div`
 const WorkoutCard = styled.div`
   width: 150px;
   border-radius: 8px;
-  background-image: linear-gradient(to top, #ffd1ff 0%, #fad0c4 100%);
-  color: white;
   display: flex;
   flex-direction: column;
   padding: 20px;

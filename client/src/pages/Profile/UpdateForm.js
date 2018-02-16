@@ -24,7 +24,6 @@ class UpdateForm extends Component {
     this.state = {
       firstName: "",
       lastName: "",
-      username: "",
       email: ""
     };
   }
@@ -46,11 +45,6 @@ class UpdateForm extends Component {
               textKey="lastName"
               label="Last Name"
               value={this.props.user.lastName}
-            />
-            <TextInput
-              textKey="username"
-              label="Username"
-              value={this.props.user.username}
             />
             <TextInput
               textKey="email"
